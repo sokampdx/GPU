@@ -16,6 +16,9 @@ Modify the vector_addition.cu example to time how long it takes the CPU and GPU 
 #include <stdio.h>
 
 
+const int SIZE = 5;
+const int TOTAL = SIZE * SIZE;
+
 /* The old-fashioned CPU-only way to add two vectors */
 void add_vectors_host(int *result, int *a, int *b, int n) 
 {
@@ -86,6 +89,7 @@ void print_vector(int *array, int n)
     printf("\n");
 }
 
+// This function print out the different in time
 void print_time(timeval start, timeval end)
 {
     printf("Time = ");
@@ -93,6 +97,8 @@ void print_time(timeval start, timeval end)
     printf("\n");
 }
 
+
+// main function
 int main(void) 
 {
     int n = 5; // Length of the arrays
@@ -106,6 +112,11 @@ int main(void)
     int deviceCount;
     int device;
     
+    // create variable size matrix
+
+
+
+
     // show cuda capability
     cudaGetDeviceCount(&deviceCount);
     for (device = 0; device < deviceCount; ++device) {
