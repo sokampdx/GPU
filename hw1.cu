@@ -1,13 +1,31 @@
+/*
+KAM PUI SO (ANTHONY)
+CS 510 GPU
+Homework 1
+
+The Cross-Over Point
+
+CUDA really shines when given problems involving lots of data, but for small problems, using CUDA can be slower than a pure CPU solution. Since it can be difficult to get a feel for how large a problem needs to be before using the GPU becomes useful, this lab encourages you to find the "crossover point" for vector addition. Specifically: how large do the vectors need to be for the speed of GPU vector addition to eclipse the speed of CPU vector addition?
+
+Modify the vector_addition.cu example to time how long it takes the CPU and GPU vector addition functions to operate on vectors of different magnitudes. Find (roughly) what magnitude constitutes the cross-over point for this problem on your system.
+
+*/
+
+#include <sys/time.h>
+#include <time.h>
 #include <stdio.h>
 
+
 /* The old-fashioned CPU-only way to add two vectors */
-void add_vectors_host(int *result, int *a, int *b, int n) {
+void add_vectors_host(int *result, int *a, int *b, int n) 
+{
     for (int i=0; i<n; i++)
         result[i] = a[i] + b[i];
 }
 
 /* The kernel that will execute on the GPU */
-__global__ void add_vectors_kernel(int *result, int *a, int *b, int n) {
+__global__ void add_vectors_kernel(int *result, int *a, int *b, int n) 
+{
     int idx = blockDim.x * blockIdx.x + threadIdx.x;
     // If we have more threads than the magnitude of our vector, we need to
     // make sure that the excess threads don't try to save results into
@@ -25,7 +43,8 @@ __global__ void add_vectors_kernel(int *result, int *a, int *b, int n) {
  *   4. Retrieve the result vector from the device by copying it to the host
  *   5. Free memory on the device
  */
-void add_vectors_dev(int *result, int *a, int *b, int n) {
+void add_vectors_dev(int *result, int *a, int *b, int n) 
+{
     // Step 1: Allocate memory
     int *a_dev, *b_dev, *result_dev;
 
@@ -59,23 +78,36 @@ void add_vectors_dev(int *result, int *a, int *b, int n) {
     cudaFree(result_dev);
 }
 
-void print_vector(int *array, int n) {
+void print_vector(int *array, int n) 
+{
     int i;
     for (i=0; i<n; i++)
         printf("%d ", array[i]);
     printf("\n");
 }
 
-int main(void) {
+void print_time(timeval start, timeval end)
+{
+    printf("Time = ");
+    printf("%ld", ((end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec)));
+    printf("\n");
+}
+
+int main(void) 
+{
     int n = 5; // Length of the arrays
     int a[] = {0, 1, 2, 3, 4};
     int b[] = {5, 6, 7, 8, 9};
     int host_result[5];
     int device_result[5];
 
+    struct timeval start, end;
+
     int deviceCount;
-    cudaGetDeviceCount(&deviceCount);
     int device;
+    
+    // show cuda capability
+    cudaGetDeviceCount(&deviceCount);
     for (device = 0; device < deviceCount; ++device) {
         cudaDeviceProp deviceProp;
         cudaGetDeviceProperties(&deviceProp, device);
@@ -83,13 +115,22 @@ int main(void) {
                device, deviceProp.major, deviceProp.minor);
     }
 
+    // print answers:
+
     printf("The CPU's answer: ");
+    gettimeofday(&start, NULL);
     add_vectors_host(host_result, a, b, n);
+    gettimeofday(&end, NULL);
     print_vector(host_result, n);
-    
+    print_time(start, end);
+
     printf("The GPU's answer: ");
+    gettimeofday(&start, NULL);
     add_vectors_dev(device_result, a, b, n);
+    gettimeofday(&end, NULL);
     print_vector(device_result, n);
+    print_time(start, end); 
+
     return 0;
 }
 
