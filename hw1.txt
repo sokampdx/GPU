@@ -1,0 +1,2400 @@
+
+size = 2
+The CPU's answer: Time = 0 us
+The GPU's answer: Time = 57505 us
+
+size = 50002
+The CPU's answer: Time = 137 us
+The GPU's answer: Time = 750 us
+
+size = 100002
+The CPU's answer: Time = 328 us
+The GPU's answer: Time = 1084 us
+
+size = 150002
+The CPU's answer: Time = 499 us
+The GPU's answer: Time = 1455 us
+
+size = 200002
+The CPU's answer: Time = 685 us
+The GPU's answer: Time = 1606 us
+
+size = 250002
+The CPU's answer: Time = 823 us
+The GPU's answer: Time = 1743 us
+
+size = 300002
+The CPU's answer: Time = 1028 us
+The GPU's answer: Time = 1844 us
+
+size = 350002
+The CPU's answer: Time = 1202 us
+The GPU's answer: Time = 1917 us
+
+size = 400002
+The CPU's answer: Time = 1330 us
+The GPU's answer: Time = 2072 us
+
+size = 450002
+The CPU's answer: Time = 1563 us
+The GPU's answer: Time = 2296 us
+
+size = 500002
+The CPU's answer: Time = 1758 us
+The GPU's answer: Time = 2380 us
+
+size = 550002
+The CPU's answer: Time = 1897 us
+The GPU's answer: Time = 2576 us
+
+size = 600002
+The CPU's answer: Time = 2056 us
+The GPU's answer: Time = 2674 us
+
+size = 650002
+The CPU's answer: Time = 2216 us
+The GPU's answer: Time = 2767 us
+
+size = 700002
+The CPU's answer: Time = 2036 us
+The GPU's answer: Time = 2916 us
+
+size = 750002
+The CPU's answer: Time = 2197 us
+The GPU's answer: Time = 3071 us
+
+size = 800002
+The CPU's answer: Time = 2766 us
+The GPU's answer: Time = 2879 us
+
+size = 850002
+The CPU's answer: Time = 2993 us
+The GPU's answer: Time = 2945 us
+
+size = 900002
+The CPU's answer: Time = 2719 us
+The GPU's answer: Time = 3504 us
+
+size = 950002
+The CPU's answer: Time = 2914 us
+The GPU's answer: Time = 3366 us
+
+size = 1000002
+The CPU's answer: Time = 3121 us
+The GPU's answer: Time = 3485 us
+
+size = 1050002
+The CPU's answer: Time = 3230 us
+The GPU's answer: Time = 3653 us
+
+size = 1100002
+The CPU's answer: Time = 3422 us
+The GPU's answer: Time = 3726 us
+
+size = 1150002
+The CPU's answer: Time = 3602 us
+The GPU's answer: Time = 3990 us
+
+size = 1200002
+The CPU's answer: Time = 3770 us
+The GPU's answer: Time = 3611 us
+
+size = 1250002
+The CPU's answer: Time = 3577 us
+The GPU's answer: Time = 4170 us
+
+size = 1300002
+The CPU's answer: Time = 3770 us
+The GPU's answer: Time = 4337 us
+
+size = 1350002
+The CPU's answer: Time = 4314 us
+The GPU's answer: Time = 4158 us
+
+size = 1400002
+The CPU's answer: Time = 4110 us
+The GPU's answer: Time = 4686 us
+
+size = 1450002
+The CPU's answer: Time = 4268 us
+The GPU's answer: Time = 4406 us
+
+size = 1500002
+The CPU's answer: Time = 4475 us
+The GPU's answer: Time = 4643 us
+
+size = 1550002
+The CPU's answer: Time = 4680 us
+The GPU's answer: Time = 4780 us
+
+size = 1600002
+The CPU's answer: Time = 4802 us
+The GPU's answer: Time = 4942 us
+
+size = 1650002
+The CPU's answer: Time = 4990 us
+The GPU's answer: Time = 5044 us
+
+size = 1700002
+The CPU's answer: Time = 5151 us
+The GPU's answer: Time = 5225 us
+
+size = 1750002
+The CPU's answer: Time = 4927 us
+The GPU's answer: Time = 5359 us
+
+size = 1800002
+The CPU's answer: Time = 5113 us
+The GPU's answer: Time = 5510 us
+
+size = 1850002
+The CPU's answer: Time = 5755 us
+The GPU's answer: Time = 5373 us
+
+size = 1900002
+The CPU's answer: Time = 5976 us
+The GPU's answer: Time = 5673 us
+
+size = 1950002
+The CPU's answer: Time = 5642 us
+The GPU's answer: Time = 6156 us
+
+size = 2000002
+The CPU's answer: Time = 5849 us
+The GPU's answer: Time = 5892 us
+
+size = 2050002
+The CPU's answer: Time = 6033 us
+The GPU's answer: Time = 6001 us
+
+size = 2100002
+The CPU's answer: Time = 6170 us
+The GPU's answer: Time = 6303 us
+
+size = 2150002
+The CPU's answer: Time = 6331 us
+The GPU's answer: Time = 6377 us
+
+size = 2200002
+The CPU's answer: Time = 6502 us
+The GPU's answer: Time = 6500 us
+
+size = 2250002
+The CPU's answer: Time = 6721 us
+The GPU's answer: Time = 6192 us
+
+size = 2300002
+The CPU's answer: Time = 6480 us
+The GPU's answer: Time = 6649 us
+
+size = 2350002
+The CPU's answer: Time = 6655 us
+The GPU's answer: Time = 6931 us
+
+size = 2400002
+The CPU's answer: Time = 7244 us
+The GPU's answer: Time = 6709 us
+
+size = 2450002
+The CPU's answer: Time = 7012 us
+The GPU's answer: Time = 7150 us
+
+size = 2500002
+The CPU's answer: Time = 7204 us
+The GPU's answer: Time = 6863 us
+
+size = 2550002
+The CPU's answer: Time = 7361 us
+The GPU's answer: Time = 7212 us
+
+size = 2600002
+The CPU's answer: Time = 7563 us
+The GPU's answer: Time = 7401 us
+
+size = 2650002
+The CPU's answer: Time = 7701 us
+The GPU's answer: Time = 7402 us
+
+size = 2700002
+The CPU's answer: Time = 7893 us
+The GPU's answer: Time = 7484 us
+
+size = 2750002
+The CPU's answer: Time = 8061 us
+The GPU's answer: Time = 7673 us
+
+size = 2800002
+The CPU's answer: Time = 7829 us
+The GPU's answer: Time = 7830 us
+
+size = 2850002
+The CPU's answer: Time = 8054 us
+The GPU's answer: Time = 8020 us
+
+size = 2900002
+The CPU's answer: Time = 8652 us
+The GPU's answer: Time = 7753 us
+
+size = 2950002
+The CPU's answer: Time = 8737 us
+The GPU's answer: Time = 7739 us
+
+size = 3000002
+The CPU's answer: Time = 8519 us
+The GPU's answer: Time = 8403 us
+
+size = 3050002
+The CPU's answer: Time = 8725 us
+The GPU's answer: Time = 8197 us
+
+size = 3100002
+The CPU's answer: Time = 8918 us
+The GPU's answer: Time = 8216 us
+
+size = 3150002
+The CPU's answer: Time = 9032 us
+The GPU's answer: Time = 8417 us
+
+size = 3200002
+The CPU's answer: Time = 9225 us
+The GPU's answer: Time = 8632 us
+
+size = 3250002
+The CPU's answer: Time = 9415 us
+The GPU's answer: Time = 8676 us
+
+size = 3300002
+The CPU's answer: Time = 9597 us
+The GPU's answer: Time = 8359 us
+
+size = 3350002
+The CPU's answer: Time = 9375 us
+The GPU's answer: Time = 8903 us
+
+size = 3400002
+The CPU's answer: Time = 9500 us
+The GPU's answer: Time = 9275 us
+
+size = 3450002
+The CPU's answer: Time = 10126 us
+The GPU's answer: Time = 8955 us
+
+size = 3500002
+The CPU's answer: Time = 9865 us
+The GPU's answer: Time = 9289 us
+
+size = 3550002
+The CPU's answer: Time = 10060 us
+The GPU's answer: Time = 9098 us
+
+size = 3600002
+The CPU's answer: Time = 10267 us
+The GPU's answer: Time = 9471 us
+
+size = 3650002
+The CPU's answer: Time = 10431 us
+The GPU's answer: Time = 9529 us
+
+size = 3700002
+The CPU's answer: Time = 10579 us
+The GPU's answer: Time = 9686 us
+
+size = 3750002
+The CPU's answer: Time = 10749 us
+The GPU's answer: Time = 9687 us
+
+size = 3800002
+The CPU's answer: Time = 10940 us
+The GPU's answer: Time = 9907 us
+
+size = 3850002
+The CPU's answer: Time = 10783 us
+The GPU's answer: Time = 10077 us
+
+size = 3900002
+The CPU's answer: Time = 10884 us
+The GPU's answer: Time = 10194 us
+
+size = 3950002
+The CPU's answer: Time = 11455 us
+The GPU's answer: Time = 9933 us
+
+size = 4000002
+The CPU's answer: Time = 11647 us
+The GPU's answer: Time = 9893 us
+
+size = 4050002
+The CPU's answer: Time = 11410 us
+The GPU's answer: Time = 10704 us
+
+size = 4100002
+The CPU's answer: Time = 11599 us
+The GPU's answer: Time = 10356 us
+
+size = 4150002
+The CPU's answer: Time = 11783 us
+The GPU's answer: Time = 10448 us
+
+size = 4200002
+The CPU's answer: Time = 11936 us
+The GPU's answer: Time = 10537 us
+
+size = 4250002
+The CPU's answer: Time = 12099 us
+The GPU's answer: Time = 10972 us
+
+size = 4300002
+The CPU's answer: Time = 12295 us
+The GPU's answer: Time = 10959 us
+
+size = 4350002
+The CPU's answer: Time = 12474 us
+The GPU's answer: Time = 10676 us
+
+size = 4400002
+The CPU's answer: Time = 12214 us
+The GPU's answer: Time = 11110 us
+
+size = 4450002
+The CPU's answer: Time = 12397 us
+The GPU's answer: Time = 11504 us
+
+size = 4500002
+The CPU's answer: Time = 13006 us
+The GPU's answer: Time = 11163 us
+
+size = 4550002
+The CPU's answer: Time = 12752 us
+The GPU's answer: Time = 11602 us
+
+size = 4600002
+The CPU's answer: Time = 12960 us
+The GPU's answer: Time = 11292 us
+
+size = 4650002
+The CPU's answer: Time = 13105 us
+The GPU's answer: Time = 11756 us
+
+size = 4700002
+The CPU's answer: Time = 13288 us
+The GPU's answer: Time = 11678 us
+
+size = 4750002
+The CPU's answer: Time = 13466 us
+The GPU's answer: Time = 11872 us
+
+size = 4800002
+The CPU's answer: Time = 13742 us
+The GPU's answer: Time = 11910 us
+
+size = 4850002
+The CPU's answer: Time = 13810 us
+The GPU's answer: Time = 11515 us
+
+size = 4900002
+The CPU's answer: Time = 13580 us
+The GPU's answer: Time = 12360 us
+
+size = 4950002
+The CPU's answer: Time = 13730 us
+The GPU's answer: Time = 12275 us
+
+size = 5000002
+The CPU's answer: Time = 14348 us
+The GPU's answer: Time = 12260 us
+
+size = 5050002
+The CPU's answer: Time = 14529 us
+The GPU's answer: Time = 12061 us
+
+size = 5100002
+The CPU's answer: Time = 14297 us
+The GPU's answer: Time = 12939 us
+
+size = 5150002
+The CPU's answer: Time = 14447 us
+The GPU's answer: Time = 12612 us
+
+size = 5200002
+The CPU's answer: Time = 14659 us
+The GPU's answer: Time = 12694 us
+
+size = 5250002
+The CPU's answer: Time = 14790 us
+The GPU's answer: Time = 12886 us
+
+size = 5300002
+The CPU's answer: Time = 14972 us
+The GPU's answer: Time = 13153 us
+
+size = 5350002
+The CPU's answer: Time = 15161 us
+The GPU's answer: Time = 13163 us
+
+size = 5400002
+The CPU's answer: Time = 15341 us
+The GPU's answer: Time = 12801 us
+
+size = 5450002
+The CPU's answer: Time = 15089 us
+The GPU's answer: Time = 13316 us
+
+size = 5500002
+The CPU's answer: Time = 15290 us
+The GPU's answer: Time = 13755 us
+
+size = 5550002
+The CPU's answer: Time = 15888 us
+The GPU's answer: Time = 13385 us
+
+size = 5600002
+The CPU's answer: Time = 15606 us
+The GPU's answer: Time = 13775 us
+
+size = 5650002
+The CPU's answer: Time = 15809 us
+The GPU's answer: Time = 13655 us
+
+size = 5700002
+The CPU's answer: Time = 15989 us
+The GPU's answer: Time = 13945 us
+
+size = 5750002
+The CPU's answer: Time = 16330 us
+The GPU's answer: Time = 13960 us
+
+size = 5800002
+The CPU's answer: Time = 16330 us
+The GPU's answer: Time = 14089 us
+
+size = 5850002
+The CPU's answer: Time = 16508 us
+The GPU's answer: Time = 14076 us
+
+size = 5900002
+The CPU's answer: Time = 16695 us
+The GPU's answer: Time = 13665 us
+
+size = 5950002
+The CPU's answer: Time = 16454 us
+The GPU's answer: Time = 14645 us
+
+size = 6000002
+The CPU's answer: Time = 16624 us
+The GPU's answer: Time = 14672 us
+
+size = 6050002
+The CPU's answer: Time = 17206 us
+The GPU's answer: Time = 14290 us
+
+size = 6100002
+The CPU's answer: Time = 17396 us
+The GPU's answer: Time = 14281 us
+
+size = 6150002
+The CPU's answer: Time = 17125 us
+The GPU's answer: Time = 15184 us
+
+size = 6200002
+The CPU's answer: Time = 17328 us
+The GPU's answer: Time = 14848 us
+
+size = 6250002
+The CPU's answer: Time = 17542 us
+The GPU's answer: Time = 14833 us
+
+size = 6300002
+The CPU's answer: Time = 17665 us
+The GPU's answer: Time = 14929 us
+
+size = 6350002
+The CPU's answer: Time = 17835 us
+The GPU's answer: Time = 15427 us
+
+size = 6400002
+The CPU's answer: Time = 18038 us
+The GPU's answer: Time = 15372 us
+
+size = 6450002
+The CPU's answer: Time = 18210 us
+The GPU's answer: Time = 14978 us
+
+size = 6500002
+The CPU's answer: Time = 17976 us
+The GPU's answer: Time = 15484 us
+
+size = 6550002
+The CPU's answer: Time = 18144 us
+The GPU's answer: Time = 16132 us
+
+size = 6600002
+The CPU's answer: Time = 18747 us
+The GPU's answer: Time = 15592 us
+
+size = 6650002
+The CPU's answer: Time = 18462 us
+The GPU's answer: Time = 16346 us
+
+size = 6700002
+The CPU's answer: Time = 18663 us
+The GPU's answer: Time = 15651 us
+
+size = 6750002
+The CPU's answer: Time = 19060 us
+The GPU's answer: Time = 16256 us
+
+size = 6800002
+The CPU's answer: Time = 19049 us
+The GPU's answer: Time = 16213 us
+
+size = 6850002
+The CPU's answer: Time = 19204 us
+The GPU's answer: Time = 16420 us
+
+size = 6900002
+The CPU's answer: Time = 19371 us
+The GPU's answer: Time = 16270 us
+
+size = 6950002
+The CPU's answer: Time = 19557 us
+The GPU's answer: Time = 15814 us
+
+size = 7000002
+The CPU's answer: Time = 19307 us
+The GPU's answer: Time = 16788 us
+
+size = 7050002
+The CPU's answer: Time = 19494 us
+The GPU's answer: Time = 16902 us
+
+size = 7100002
+The CPU's answer: Time = 20091 us
+The GPU's answer: Time = 16523 us
+
+size = 7150002
+The CPU's answer: Time = 20425 us
+The GPU's answer: Time = 16473 us
+
+size = 7200002
+The CPU's answer: Time = 20030 us
+The GPU's answer: Time = 17355 us
+
+size = 7250002
+The CPU's answer: Time = 20207 us
+The GPU's answer: Time = 17245 us
+
+size = 7300002
+The CPU's answer: Time = 20398 us
+The GPU's answer: Time = 17066 us
+
+size = 7350002
+The CPU's answer: Time = 20537 us
+The GPU's answer: Time = 17132 us
+
+size = 7400002
+The CPU's answer: Time = 20722 us
+The GPU's answer: Time = 17746 us
+
+size = 7450002
+The CPU's answer: Time = 20899 us
+The GPU's answer: Time = 17658 us
+
+size = 7500002
+The CPU's answer: Time = 21088 us
+The GPU's answer: Time = 17210 us
+
+size = 7550002
+The CPU's answer: Time = 20833 us
+The GPU's answer: Time = 17852 us
+
+size = 7600002
+The CPU's answer: Time = 21021 us
+The GPU's answer: Time = 18231 us
+
+size = 7650002
+The CPU's answer: Time = 21613 us
+The GPU's answer: Time = 17935 us
+
+size = 7700002
+The CPU's answer: Time = 21636 us
+The GPU's answer: Time = 18241 us
+
+size = 7750002
+The CPU's answer: Time = 21583 us
+The GPU's answer: Time = 17894 us
+
+size = 7800002
+The CPU's answer: Time = 21745 us
+The GPU's answer: Time = 17954 us
+
+size = 7850002
+The CPU's answer: Time = 21936 us
+The GPU's answer: Time = 18543 us
+
+size = 7900002
+The CPU's answer: Time = 22376 us
+The GPU's answer: Time = 18647 us
+
+size = 7950002
+The CPU's answer: Time = 22359 us
+The GPU's answer: Time = 18535 us
+
+size = 8000002
+The CPU's answer: Time = 22479 us
+The GPU's answer: Time = 18243 us
+
+size = 8050002
+The CPU's answer: Time = 22285 us
+The GPU's answer: Time = 19155 us
+
+size = 8100002
+The CPU's answer: Time = 22354 us
+The GPU's answer: Time = 19088 us
+
+size = 8150002
+The CPU's answer: Time = 22950 us
+The GPU's answer: Time = 18801 us
+
+size = 8200002
+The CPU's answer: Time = 23142 us
+The GPU's answer: Time = 18611 us
+
+size = 8250002
+The CPU's answer: Time = 22922 us
+The GPU's answer: Time = 19670 us
+
+size = 8300002
+The CPU's answer: Time = 23116 us
+The GPU's answer: Time = 19337 us
+
+size = 8350002
+The CPU's answer: Time = 23429 us
+The GPU's answer: Time = 19670 us
+
+size = 8400002
+The CPU's answer: Time = 23431 us
+The GPU's answer: Time = 19486 us
+
+size = 8450002
+The CPU's answer: Time = 23789 us
+The GPU's answer: Time = 19973 us
+
+size = 8500002
+The CPU's answer: Time = 23773 us
+The GPU's answer: Time = 19931 us
+
+size = 8550002
+The CPU's answer: Time = 23961 us
+The GPU's answer: Time = 19586 us
+
+size = 8600002
+The CPU's answer: Time = 23725 us
+The GPU's answer: Time = 20218 us
+
+size = 8650002
+The CPU's answer: Time = 24210 us
+The GPU's answer: Time = 20271 us
+
+size = 8700002
+The CPU's answer: Time = 24497 us
+The GPU's answer: Time = 20106 us
+
+size = 8750002
+The CPU's answer: Time = 24260 us
+The GPU's answer: Time = 20474 us
+
+size = 8800002
+The CPU's answer: Time = 24538 us
+The GPU's answer: Time = 20115 us
+
+size = 8850002
+The CPU's answer: Time = 24612 us
+The GPU's answer: Time = 20143 us
+
+size = 8900002
+The CPU's answer: Time = 24809 us
+The GPU's answer: Time = 20892 us
+
+size = 8950002
+The CPU's answer: Time = 24942 us
+The GPU's answer: Time = 20769 us
+
+size = 9000002
+The CPU's answer: Time = 25117 us
+The GPU's answer: Time = 20707 us
+
+size = 9050002
+The CPU's answer: Time = 25311 us
+The GPU's answer: Time = 20264 us
+
+size = 9100002
+The CPU's answer: Time = 25068 us
+The GPU's answer: Time = 21398 us
+
+size = 9150002
+The CPU's answer: Time = 25266 us
+The GPU's answer: Time = 21268 us
+
+size = 9200002
+The CPU's answer: Time = 25822 us
+The GPU's answer: Time = 20889 us
+
+size = 9250002
+The CPU's answer: Time = 26001 us
+The GPU's answer: Time = 20805 us
+
+size = 9300002
+The CPU's answer: Time = 25772 us
+The GPU's answer: Time = 21968 us
+
+size = 9350002
+The CPU's answer: Time = 25976 us
+The GPU's answer: Time = 21504 us
+
+size = 9400002
+The CPU's answer: Time = 26173 us
+The GPU's answer: Time = 21458 us
+
+size = 9450002
+The CPU's answer: Time = 26303 us
+The GPU's answer: Time = 21526 us
+
+size = 9500002
+The CPU's answer: Time = 26484 us
+The GPU's answer: Time = 22259 us
+
+size = 9550002
+The CPU's answer: Time = 26666 us
+The GPU's answer: Time = 22113 us
+
+size = 9600002
+The CPU's answer: Time = 27168 us
+The GPU's answer: Time = 21690 us
+
+size = 9650002
+The CPU's answer: Time = 26888 us
+The GPU's answer: Time = 22074 us
+
+size = 9700002
+The CPU's answer: Time = 27176 us
+The GPU's answer: Time = 21695 us
+
+size = 9750002
+The CPU's answer: Time = 27384 us
+The GPU's answer: Time = 22557 us
+
+size = 9800002
+The CPU's answer: Time = 27142 us
+The GPU's answer: Time = 22698 us
+
+size = 9850002
+The CPU's answer: Time = 27315 us
+The GPU's answer: Time = 22188 us
+
+size = 9900002
+The CPU's answer: Time = 27505 us
+The GPU's answer: Time = 22328 us
+
+size = 9950002
+The CPU's answer: Time = 27690 us
+The GPU's answer: Time = 23001 us
+
+size = 10000002
+The CPU's answer: Time = 27824 us
+The GPU's answer: Time = 22932 us
+
+size = 10050002
+The CPU's answer: Time = 28028 us
+The GPU's answer: Time = 23147 us
+
+size = 10100002
+The CPU's answer: Time = 28146 us
+The GPU's answer: Time = 22573 us
+
+size = 10150002
+The CPU's answer: Time = 27946 us
+The GPU's answer: Time = 23598 us
+
+size = 10200002
+The CPU's answer: Time = 28115 us
+The GPU's answer: Time = 23596 us
+
+size = 10250002
+The CPU's answer: Time = 28691 us
+The GPU's answer: Time = 23055 us
+
+size = 10300002
+The CPU's answer: Time = 28867 us
+The GPU's answer: Time = 23039 us
+
+size = 10350002
+The CPU's answer: Time = 28650 us
+The GPU's answer: Time = 24255 us
+
+size = 10400002
+The CPU's answer: Time = 28854 us
+The GPU's answer: Time = 23855 us
+
+size = 10450002
+The CPU's answer: Time = 29039 us
+The GPU's answer: Time = 23866 us
+
+size = 10500002
+The CPU's answer: Time = 29175 us
+The GPU's answer: Time = 23733 us
+
+size = 10550002
+The CPU's answer: Time = 29330 us
+The GPU's answer: Time = 24434 us
+
+size = 10600002
+The CPU's answer: Time = 29793 us
+The GPU's answer: Time = 24346 us
+
+size = 10650002
+The CPU's answer: Time = 29702 us
+The GPU's answer: Time = 23968 us
+
+size = 10700002
+The CPU's answer: Time = 29457 us
+The GPU's answer: Time = 24286 us
+
+size = 10750002
+The CPU's answer: Time = 30049 us
+The GPU's answer: Time = 23919 us
+
+size = 10800002
+The CPU's answer: Time = 30233 us
+The GPU's answer: Time = 24764 us
+
+size = 10850002
+The CPU's answer: Time = 30007 us
+The GPU's answer: Time = 24951 us
+
+size = 10900002
+The CPU's answer: Time = 30214 us
+The GPU's answer: Time = 24459 us
+
+size = 10950002
+The CPU's answer: Time = 30381 us
+The GPU's answer: Time = 24612 us
+
+size = 11000002
+The CPU's answer: Time = 30553 us
+The GPU's answer: Time = 25217 us
+
+size = 11050002
+The CPU's answer: Time = 30694 us
+The GPU's answer: Time = 25300 us
+
+size = 11100002
+The CPU's answer: Time = 30876 us
+The GPU's answer: Time = 25229 us
+
+size = 11150002
+The CPU's answer: Time = 31041 us
+The GPU's answer: Time = 24688 us
+
+size = 11200002
+The CPU's answer: Time = 30808 us
+The GPU's answer: Time = 26116 us
+
+size = 11250002
+The CPU's answer: Time = 30992 us
+The GPU's answer: Time = 25800 us
+
+size = 11300002
+The CPU's answer: Time = 31590 us
+The GPU's answer: Time = 25535 us
+
+size = 11350002
+The CPU's answer: Time = 31812 us
+The GPU's answer: Time = 25272 us
+
+size = 11400002
+The CPU's answer: Time = 31509 us
+The GPU's answer: Time = 26487 us
+
+size = 11450002
+The CPU's answer: Time = 31724 us
+The GPU's answer: Time = 26110 us
+
+size = 11500002
+The CPU's answer: Time = 31891 us
+The GPU's answer: Time = 26118 us
+
+size = 11550002
+The CPU's answer: Time = 32325 us
+The GPU's answer: Time = 26087 us
+
+size = 11600002
+The CPU's answer: Time = 32214 us
+The GPU's answer: Time = 25952 us
+
+size = 11650002
+The CPU's answer: Time = 32445 us
+The GPU's answer: Time = 26742 us
+
+size = 11700002
+The CPU's answer: Time = 32571 us
+The GPU's answer: Time = 26319 us
+
+size = 11750002
+The CPU's answer: Time = 32345 us
+The GPU's answer: Time = 26516 us
+
+size = 11800002
+The CPU's answer: Time = 32916 us
+The GPU's answer: Time = 26295 us
+
+size = 11850002
+The CPU's answer: Time = 33115 us
+The GPU's answer: Time = 27052 us
+
+size = 11900002
+The CPU's answer: Time = 32877 us
+The GPU's answer: Time = 27227 us
+
+size = 11950002
+The CPU's answer: Time = 33071 us
+The GPU's answer: Time = 26733 us
+
+size = 12000002
+The CPU's answer: Time = 33223 us
+The GPU's answer: Time = 26884 us
+
+size = 12050002
+The CPU's answer: Time = 33401 us
+The GPU's answer: Time = 27578 us
+
+size = 12100002
+The CPU's answer: Time = 33555 us
+The GPU's answer: Time = 27578 us
+
+size = 12150002
+The CPU's answer: Time = 33761 us
+The GPU's answer: Time = 27435 us
+
+size = 12200002
+The CPU's answer: Time = 33935 us
+The GPU's answer: Time = 26964 us
+
+size = 12250002
+The CPU's answer: Time = 33737 us
+The GPU's answer: Time = 28187 us
+
+size = 12300002
+The CPU's answer: Time = 33868 us
+The GPU's answer: Time = 28098 us
+
+size = 12350002
+The CPU's answer: Time = 34463 us
+The GPU's answer: Time = 27795 us
+
+size = 12400002
+The CPU's answer: Time = 34662 us
+The GPU's answer: Time = 27567 us
+
+size = 12450002
+The CPU's answer: Time = 34387 us
+The GPU's answer: Time = 28765 us
+
+size = 12500002
+The CPU's answer: Time = 34908 us
+The GPU's answer: Time = 28416 us
+
+size = 12550002
+The CPU's answer: Time = 35291 us
+The GPU's answer: Time = 28339 us
+
+size = 12600002
+The CPU's answer: Time = 34905 us
+The GPU's answer: Time = 28150 us
+
+size = 12650002
+The CPU's answer: Time = 35106 us
+The GPU's answer: Time = 28227 us
+
+size = 12700002
+The CPU's answer: Time = 35276 us
+The GPU's answer: Time = 29123 us
+
+size = 12750002
+The CPU's answer: Time = 35460 us
+The GPU's answer: Time = 28637 us
+
+size = 12800002
+The CPU's answer: Time = 35210 us
+The GPU's answer: Time = 28666 us
+
+size = 12850002
+The CPU's answer: Time = 35798 us
+The GPU's answer: Time = 28293 us
+
+size = 12900002
+The CPU's answer: Time = 35968 us
+The GPU's answer: Time = 29407 us
+
+size = 12950002
+The CPU's answer: Time = 35977 us
+The GPU's answer: Time = 29584 us
+
+size = 13000002
+The CPU's answer: Time = 35965 us
+The GPU's answer: Time = 28996 us
+
+size = 13050002
+The CPU's answer: Time = 36107 us
+The GPU's answer: Time = 28909 us
+
+size = 13100002
+The CPU's answer: Time = 36286 us
+The GPU's answer: Time = 29793 us
+
+size = 13150002
+The CPU's answer: Time = 36440 us
+The GPU's answer: Time = 30066 us
+
+size = 13200002
+The CPU's answer: Time = 36633 us
+The GPU's answer: Time = 30300 us
+
+size = 13250002
+The CPU's answer: Time = 36796 us
+The GPU's answer: Time = 29166 us
+
+size = 13300002
+The CPU's answer: Time = 36542 us
+The GPU's answer: Time = 30574 us
+
+size = 13350002
+The CPU's answer: Time = 36748 us
+The GPU's answer: Time = 30460 us
+
+size = 13400002
+The CPU's answer: Time = 37319 us
+The GPU's answer: Time = 30028 us
+
+size = 13450002
+The CPU's answer: Time = 37531 us
+The GPU's answer: Time = 29764 us
+
+size = 13500002
+The CPU's answer: Time = 37654 us
+The GPU's answer: Time = 30641 us
+
+size = 13550002
+The CPU's answer: Time = 37465 us
+The GPU's answer: Time = 30652 us
+
+size = 13600002
+The CPU's answer: Time = 37675 us
+The GPU's answer: Time = 30531 us
+
+size = 13650002
+The CPU's answer: Time = 37796 us
+The GPU's answer: Time = 30467 us
+
+size = 13700002
+The CPU's answer: Time = 37960 us
+The GPU's answer: Time = 30360 us
+
+size = 13750002
+The CPU's answer: Time = 38463 us
+The GPU's answer: Time = 31499 us
+
+size = 13800002
+The CPU's answer: Time = 38463 us
+The GPU's answer: Time = 30975 us
+
+size = 13850002
+The CPU's answer: Time = 38118 us
+The GPU's answer: Time = 30962 us
+
+size = 13900002
+The CPU's answer: Time = 38714 us
+The GPU's answer: Time = 30874 us
+
+size = 13950002
+The CPU's answer: Time = 38855 us
+The GPU's answer: Time = 32772 us
+
+size = 14000002
+The CPU's answer: Time = 38836 us
+The GPU's answer: Time = 31800 us
+
+size = 14050002
+The CPU's answer: Time = 38797 us
+The GPU's answer: Time = 31214 us
+
+size = 14100002
+The CPU's answer: Time = 38986 us
+The GPU's answer: Time = 31167 us
+
+size = 14150002
+The CPU's answer: Time = 39174 us
+The GPU's answer: Time = 32188 us
+
+size = 14200002
+The CPU's answer: Time = 39578 us
+The GPU's answer: Time = 32335 us
+
+size = 14250002
+The CPU's answer: Time = 39739 us
+The GPU's answer: Time = 31912 us
+
+size = 14300002
+The CPU's answer: Time = 39683 us
+The GPU's answer: Time = 31265 us
+
+size = 14350002
+The CPU's answer: Time = 39448 us
+The GPU's answer: Time = 32898 us
+
+size = 14400002
+The CPU's answer: Time = 39635 us
+The GPU's answer: Time = 32662 us
+
+size = 14450002
+The CPU's answer: Time = 40619 us
+The GPU's answer: Time = 32197 us
+
+size = 14500002
+The CPU's answer: Time = 40381 us
+The GPU's answer: Time = 31985 us
+
+size = 14550002
+The CPU's answer: Time = 40153 us
+The GPU's answer: Time = 31894 us
+
+size = 14600002
+The CPU's answer: Time = 40321 us
+The GPU's answer: Time = 32826 us
+
+size = 14650002
+The CPU's answer: Time = 40524 us
+The GPU's answer: Time = 32713 us
+
+size = 14700002
+The CPU's answer: Time = 40683 us
+The GPU's answer: Time = 32617 us
+
+size = 14750002
+The CPU's answer: Time = 40827 us
+The GPU's answer: Time = 32485 us
+
+size = 14800002
+The CPU's answer: Time = 41027 us
+The GPU's answer: Time = 33551 us
+
+size = 14850002
+The CPU's answer: Time = 41206 us
+The GPU's answer: Time = 33067 us
+
+size = 14900002
+The CPU's answer: Time = 40930 us
+The GPU's answer: Time = 33349 us
+
+size = 14950002
+The CPU's answer: Time = 41558 us
+The GPU's answer: Time = 32717 us
+
+size = 15000002
+The CPU's answer: Time = 41755 us
+The GPU's answer: Time = 33859 us
+
+size = 15050002
+The CPU's answer: Time = 41485 us
+The GPU's answer: Time = 33904 us
+
+size = 15100002
+The CPU's answer: Time = 41662 us
+The GPU's answer: Time = 33663 us
+
+size = 15150002
+The CPU's answer: Time = 42585 us
+The GPU's answer: Time = 33395 us
+
+size = 15200002
+The CPU's answer: Time = 42048 us
+The GPU's answer: Time = 34346 us
+
+size = 15250002
+The CPU's answer: Time = 42196 us
+The GPU's answer: Time = 34469 us
+
+size = 15300002
+The CPU's answer: Time = 42365 us
+The GPU's answer: Time = 34082 us
+
+size = 15350002
+The CPU's answer: Time = 42536 us
+The GPU's answer: Time = 33592 us
+
+size = 15400002
+The CPU's answer: Time = 42840 us
+The GPU's answer: Time = 35422 us
+
+size = 15450002
+The CPU's answer: Time = 42953 us
+The GPU's answer: Time = 34999 us
+
+size = 15500002
+The CPU's answer: Time = 43074 us
+The GPU's answer: Time = 34546 us
+
+size = 15550002
+The CPU's answer: Time = 43257 us
+The GPU's answer: Time = 34239 us
+
+size = 15600002
+The CPU's answer: Time = 43017 us
+The GPU's answer: Time = 34305 us
+
+size = 15650002
+The CPU's answer: Time = 43232 us
+The GPU's answer: Time = 35296 us
+
+size = 15700002
+The CPU's answer: Time = 43457 us
+The GPU's answer: Time = 35060 us
+
+size = 15750002
+The CPU's answer: Time = 43580 us
+The GPU's answer: Time = 34958 us
+
+size = 15800002
+The CPU's answer: Time = 43743 us
+The GPU's answer: Time = 34782 us
+
+size = 15850002
+The CPU's answer: Time = 43893 us
+The GPU's answer: Time = 35762 us
+
+size = 15900002
+The CPU's answer: Time = 44122 us
+The GPU's answer: Time = 35379 us
+
+size = 15950002
+The CPU's answer: Time = 43832 us
+The GPU's answer: Time = 35664 us
+
+size = 16000002
+The CPU's answer: Time = 44429 us
+The GPU's answer: Time = 34926 us
+
+size = 16050002
+The CPU's answer: Time = 44598 us
+The GPU's answer: Time = 36130 us
+
+size = 16100002
+The CPU's answer: Time = 44463 us
+The GPU's answer: Time = 36232 us
+
+size = 16150002
+The CPU's answer: Time = 44572 us
+The GPU's answer: Time = 35679 us
+
+size = 16200002
+The CPU's answer: Time = 44739 us
+The GPU's answer: Time = 35523 us
+
+size = 16250002
+The CPU's answer: Time = 44911 us
+The GPU's answer: Time = 36788 us
+
+size = 16300002
+The CPU's answer: Time = 45063 us
+The GPU's answer: Time = 36455 us
+
+size = 16350002
+The CPU's answer: Time = 45241 us
+The GPU's answer: Time = 36402 us
+
+size = 16400002
+The CPU's answer: Time = 45885 us
+The GPU's answer: Time = 35915 us
+
+size = 16450002
+The CPU's answer: Time = 45183 us
+The GPU's answer: Time = 36082 us
+
+size = 16500002
+The CPU's answer: Time = 45367 us
+The GPU's answer: Time = 37179 us
+
+size = 16550002
+The CPU's answer: Time = 45948 us
+The GPU's answer: Time = 36584 us
+
+size = 16600002
+The CPU's answer: Time = 46152 us
+The GPU's answer: Time = 36195 us
+
+size = 16650002
+The CPU's answer: Time = 45915 us
+The GPU's answer: Time = 36420 us
+
+size = 16700002
+The CPU's answer: Time = 46048 us
+The GPU's answer: Time = 37647 us
+
+size = 16750002
+The CPU's answer: Time = 46312 us
+The GPU's answer: Time = 37035 us
+
+size = 16800002
+The CPU's answer: Time = 46437 us
+The GPU's answer: Time = 37215 us
+
+size = 16850002
+The CPU's answer: Time = 46603 us
+The GPU's answer: Time = 36945 us
+
+size = 16900002
+The CPU's answer: Time = 46772 us
+The GPU's answer: Time = 37994 us
+
+size = 16950002
+The CPU's answer: Time = 46941 us
+The GPU's answer: Time = 37726 us
+
+size = 17000002
+The CPU's answer: Time = 46693 us
+The GPU's answer: Time = 37813 us
+
+size = 17050002
+The CPU's answer: Time = 47316 us
+The GPU's answer: Time = 37136 us
+
+size = 17100002
+The CPU's answer: Time = 49022 us
+The GPU's answer: Time = 38439 us
+
+size = 17150002
+The CPU's answer: Time = 47241 us
+The GPU's answer: Time = 38414 us
+
+size = 17200002
+The CPU's answer: Time = 47396 us
+The GPU's answer: Time = 38017 us
+
+size = 17250002
+The CPU's answer: Time = 47596 us
+The GPU's answer: Time = 37711 us
+
+size = 17300002
+The CPU's answer: Time = 47787 us
+The GPU's answer: Time = 39483 us
+
+size = 17350002
+The CPU's answer: Time = 48385 us
+The GPU's answer: Time = 38918 us
+
+size = 17400002
+The CPU's answer: Time = 48119 us
+The GPU's answer: Time = 38589 us
+
+size = 17450002
+The CPU's answer: Time = 48284 us
+The GPU's answer: Time = 37991 us
+
+size = 17500002
+The CPU's answer: Time = 48049 us
+The GPU's answer: Time = 38331 us
+
+size = 17550002
+The CPU's answer: Time = 48209 us
+The GPU's answer: Time = 39458 us
+
+size = 17600002
+The CPU's answer: Time = 48836 us
+The GPU's answer: Time = 38925 us
+
+size = 17650002
+The CPU's answer: Time = 49037 us
+The GPU's answer: Time = 38551 us
+
+size = 17700002
+The CPU's answer: Time = 48778 us
+The GPU's answer: Time = 38495 us
+
+size = 17750002
+The CPU's answer: Time = 48951 us
+The GPU's answer: Time = 39962 us
+
+size = 17800002
+The CPU's answer: Time = 49421 us
+The GPU's answer: Time = 39657 us
+
+size = 17850002
+The CPU's answer: Time = 49670 us
+The GPU's answer: Time = 39655 us
+
+size = 17900002
+The CPU's answer: Time = 49555 us
+The GPU's answer: Time = 39217 us
+
+size = 17950002
+The CPU's answer: Time = 49639 us
+The GPU's answer: Time = 40475 us
+
+size = 18000002
+The CPU's answer: Time = 49391 us
+The GPU's answer: Time = 40379 us
+
+size = 18050002
+The CPU's answer: Time = 49561 us
+The GPU's answer: Time = 40136 us
+
+size = 18100002
+The CPU's answer: Time = 50150 us
+The GPU's answer: Time = 39662 us
+
+size = 18150002
+The CPU's answer: Time = 50355 us
+The GPU's answer: Time = 40798 us
+
+size = 18200002
+The CPU's answer: Time = 50104 us
+The GPU's answer: Time = 40719 us
+
+size = 18250002
+The CPU's answer: Time = 50278 us
+The GPU's answer: Time = 40269 us
+
+size = 18300002
+The CPU's answer: Time = 50951 us
+The GPU's answer: Time = 39987 us
+
+size = 18350002
+The CPU's answer: Time = 50792 us
+The GPU's answer: Time = 41128 us
+
+size = 18400002
+The CPU's answer: Time = 50801 us
+The GPU's answer: Time = 41333 us
+
+size = 18450002
+The CPU's answer: Time = 50954 us
+The GPU's answer: Time = 40777 us
+
+size = 18500002
+The CPU's answer: Time = 51165 us
+The GPU's answer: Time = 40208 us
+
+size = 18550002
+The CPU's answer: Time = 50935 us
+The GPU's answer: Time = 40409 us
+
+size = 18600002
+The CPU's answer: Time = 51103 us
+The GPU's answer: Time = 41861 us
+
+size = 18650002
+The CPU's answer: Time = 51690 us
+The GPU's answer: Time = 41107 us
+
+size = 18700002
+The CPU's answer: Time = 51467 us
+The GPU's answer: Time = 41139 us
+
+size = 18750002
+The CPU's answer: Time = 51633 us
+The GPU's answer: Time = 40851 us
+
+size = 18800002
+The CPU's answer: Time = 51848 us
+The GPU's answer: Time = 42251 us
+
+size = 18850002
+The CPU's answer: Time = 52087 us
+The GPU's answer: Time = 41853 us
+
+size = 18900002
+The CPU's answer: Time = 52139 us
+The GPU's answer: Time = 41500 us
+
+size = 18950002
+The CPU's answer: Time = 52309 us
+The GPU's answer: Time = 41316 us
+
+size = 19000002
+The CPU's answer: Time = 52467 us
+The GPU's answer: Time = 42695 us
+
+size = 19050002
+The CPU's answer: Time = 52257 us
+The GPU's answer: Time = 42498 us
+
+size = 19100002
+The CPU's answer: Time = 52420 us
+The GPU's answer: Time = 42191 us
+
+size = 19150002
+The CPU's answer: Time = 53062 us
+The GPU's answer: Time = 41572 us
+
+size = 19200002
+The CPU's answer: Time = 53219 us
+The GPU's answer: Time = 42839 us
+
+size = 19250002
+The CPU's answer: Time = 52969 us
+The GPU's answer: Time = 43165 us
+
+size = 19300002
+The CPU's answer: Time = 53818 us
+The GPU's answer: Time = 42524 us
+
+size = 19350002
+The CPU's answer: Time = 53357 us
+The GPU's answer: Time = 42109 us
+
+size = 19400002
+The CPU's answer: Time = 53509 us
+The GPU's answer: Time = 41912 us
+
+size = 19450002
+The CPU's answer: Time = 53734 us
+The GPU's answer: Time = 43605 us
+
+size = 19500002
+The CPU's answer: Time = 53848 us
+The GPU's answer: Time = 43158 us
+
+size = 19550002
+The CPU's answer: Time = 54055 us
+The GPU's answer: Time = 42317 us
+
+size = 19600002
+The CPU's answer: Time = 53752 us
+The GPU's answer: Time = 42697 us
+
+size = 19650002
+The CPU's answer: Time = 53978 us
+The GPU's answer: Time = 43940 us
+
+size = 19700002
+The CPU's answer: Time = 54557 us
+The GPU's answer: Time = 43338 us
+
+size = 19750002
+The CPU's answer: Time = 54332 us
+The GPU's answer: Time = 43503 us
+
+size = 19800002
+The CPU's answer: Time = 54522 us
+The GPU's answer: Time = 43001 us
+
+size = 19850002
+The CPU's answer: Time = 54702 us
+The GPU's answer: Time = 44528 us
+
+size = 19900002
+The CPU's answer: Time = 54892 us
+The GPU's answer: Time = 44075 us
+
+size = 19950002
+The CPU's answer: Time = 55060 us
+The GPU's answer: Time = 43824 us
+
+size = 20000002
+The CPU's answer: Time = 55219 us
+The GPU's answer: Time = 43531 us
+
+size = 20050002
+The CPU's answer: Time = 55389 us
+The GPU's answer: Time = 44924 us
+
+size = 20100002
+The CPU's answer: Time = 55170 us
+The GPU's answer: Time = 44835 us
+
+size = 20150002
+The CPU's answer: Time = 55369 us
+The GPU's answer: Time = 44565 us
+
+size = 20200002
+The CPU's answer: Time = 55984 us
+The GPU's answer: Time = 43935 us
+
+size = 20250002
+The CPU's answer: Time = 56856 us
+The GPU's answer: Time = 45392 us
+
+size = 20300002
+The CPU's answer: Time = 55863 us
+The GPU's answer: Time = 45389 us
+
+size = 20350002
+The CPU's answer: Time = 56048 us
+The GPU's answer: Time = 44754 us
+
+size = 20400002
+The CPU's answer: Time = 56273 us
+The GPU's answer: Time = 44645 us
+
+size = 20450002
+The CPU's answer: Time = 56406 us
+The GPU's answer: Time = 44260 us
+
+size = 20500002
+The CPU's answer: Time = 56543 us
+The GPU's answer: Time = 45725 us
+
+size = 20550002
+The CPU's answer: Time = 56744 us
+The GPU's answer: Time = 45206 us
+
+size = 20600002
+The CPU's answer: Time = 56927 us
+The GPU's answer: Time = 44560 us
+
+size = 20650002
+The CPU's answer: Time = 56684 us
+The GPU's answer: Time = 44974 us
+
+size = 20700002
+The CPU's answer: Time = 56896 us
+The GPU's answer: Time = 46600 us
+
+size = 20750002
+The CPU's answer: Time = 57448 us
+The GPU's answer: Time = 45941 us
+
+size = 20800002
+The CPU's answer: Time = 57204 us
+The GPU's answer: Time = 45665 us
+
+size = 20850002
+The CPU's answer: Time = 57386 us
+The GPU's answer: Time = 45158 us
+
+size = 20900002
+The CPU's answer: Time = 57573 us
+The GPU's answer: Time = 46511 us
+
+size = 20950002
+The CPU's answer: Time = 57755 us
+The GPU's answer: Time = 46356 us
+
+size = 21000002
+The CPU's answer: Time = 57935 us
+The GPU's answer: Time = 46132 us
+
+size = 21050002
+The CPU's answer: Time = 58109 us
+The GPU's answer: Time = 45773 us
+
+size = 21100002
+The CPU's answer: Time = 58466 us
+The GPU's answer: Time = 48578 us
+
+size = 21150002
+The CPU's answer: Time = 58216 us
+The GPU's answer: Time = 47053 us
+
+size = 21200002
+The CPU's answer: Time = 58870 us
+The GPU's answer: Time = 46789 us
+
+size = 21250002
+The CPU's answer: Time = 59562 us
+The GPU's answer: Time = 46629 us
+
+size = 21300002
+The CPU's answer: Time = 59037 us
+The GPU's answer: Time = 45684 us
+
+size = 21350002
+The CPU's answer: Time = 59122 us
+The GPU's answer: Time = 47490 us
+
+size = 21400002
+The CPU's answer: Time = 58941 us
+The GPU's answer: Time = 47116 us
+
+size = 21450002
+The CPU's answer: Time = 59116 us
+The GPU's answer: Time = 46819 us
+
+size = 21500002
+The CPU's answer: Time = 59264 us
+The GPU's answer: Time = 46283 us
+
+size = 21550002
+The CPU's answer: Time = 59422 us
+The GPU's answer: Time = 48071 us
+
+size = 21600002
+The CPU's answer: Time = 59652 us
+The GPU's answer: Time = 47950 us
+
+size = 21650002
+The CPU's answer: Time = 59859 us
+The GPU's answer: Time = 46961 us
+
+size = 21700002
+The CPU's answer: Time = 59530 us
+The GPU's answer: Time = 47086 us
+
+size = 21750002
+The CPU's answer: Time = 59748 us
+The GPU's answer: Time = 48775 us
+
+size = 21800002
+The CPU's answer: Time = 60306 us
+The GPU's answer: Time = 48075 us
+
+size = 21850002
+The CPU's answer: Time = 60114 us
+The GPU's answer: Time = 47886 us
+
+size = 21900002
+The CPU's answer: Time = 60249 us
+The GPU's answer: Time = 47615 us
+
+size = 21950002
+The CPU's answer: Time = 60448 us
+The GPU's answer: Time = 49048 us
+
+size = 22000002
+The CPU's answer: Time = 60627 us
+The GPU's answer: Time = 48535 us
+
+size = 22050002
+The CPU's answer: Time = 60791 us
+The GPU's answer: Time = 48203 us
+
+size = 22100002
+The CPU's answer: Time = 60948 us
+The GPU's answer: Time = 47881 us
+
+size = 22150002
+The CPU's answer: Time = 61129 us
+The GPU's answer: Time = 49556 us
+
+size = 22200002
+The CPU's answer: Time = 61451 us
+The GPU's answer: Time = 49215 us
+
+size = 22250002
+The CPU's answer: Time = 61065 us
+The GPU's answer: Time = 49196 us
+
+size = 22300002
+The CPU's answer: Time = 61691 us
+The GPU's answer: Time = 48212 us
+
+size = 22350002
+The CPU's answer: Time = 61907 us
+The GPU's answer: Time = 47921 us
+
+size = 22400002
+The CPU's answer: Time = 61640 us
+The GPU's answer: Time = 50249 us
+
+size = 22450002
+The CPU's answer: Time = 61844 us
+The GPU's answer: Time = 49355 us
+
+size = 22500002
+The CPU's answer: Time = 62011 us
+The GPU's answer: Time = 48964 us
+
+size = 22550002
+The CPU's answer: Time = 62132 us
+The GPU's answer: Time = 48879 us
+
+size = 22600002
+The CPU's answer: Time = 62319 us
+The GPU's answer: Time = 50164 us
+
+size = 22650002
+The CPU's answer: Time = 62520 us
+The GPU's answer: Time = 49886 us
+
+size = 22700002
+The CPU's answer: Time = 62731 us
+The GPU's answer: Time = 49225 us
+
+size = 22750002
+The CPU's answer: Time = 62397 us
+The GPU's answer: Time = 49441 us
+
+size = 22800002
+The CPU's answer: Time = 62613 us
+The GPU's answer: Time = 50943 us
+
+size = 22850002
+The CPU's answer: Time = 63202 us
+The GPU's answer: Time = 50299 us
+
+size = 22900002
+The CPU's answer: Time = 62961 us
+The GPU's answer: Time = 50354 us
+
+size = 22950002
+The CPU's answer: Time = 63113 us
+The GPU's answer: Time = 49614 us
+
+size = 23000002
+The CPU's answer: Time = 63326 us
+The GPU's answer: Time = 51189 us
+
+size = 23050002
+The CPU's answer: Time = 63535 us
+The GPU's answer: Time = 50759 us
+
+size = 23100002
+The CPU's answer: Time = 63711 us
+The GPU's answer: Time = 50734 us
+
+size = 23150002
+The CPU's answer: Time = 64483 us
+The GPU's answer: Time = 50343 us
+
+size = 23200002
+The CPU's answer: Time = 64019 us
+The GPU's answer: Time = 49782 us
+
+size = 23250002
+The CPU's answer: Time = 63784 us
+The GPU's answer: Time = 51651 us
+
+size = 23300002
+The CPU's answer: Time = 63951 us
+The GPU's answer: Time = 52022 us
+
+size = 23350002
+The CPU's answer: Time = 64558 us
+The GPU's answer: Time = 50524 us
+
+size = 23400002
+The CPU's answer: Time = 64724 us
+The GPU's answer: Time = 50311 us
+
+size = 23450002
+The CPU's answer: Time = 64501 us
+The GPU's answer: Time = 52430 us
+
+size = 23500002
+The CPU's answer: Time = 65187 us
+The GPU's answer: Time = 51365 us
+
+size = 23550002
+The CPU's answer: Time = 64905 us
+The GPU's answer: Time = 51444 us
+
+size = 23600002
+The CPU's answer: Time = 64999 us
+The GPU's answer: Time = 51295 us
+
+size = 23650002
+The CPU's answer: Time = 65163 us
+The GPU's answer: Time = 52696 us
+
+size = 23700002
+The CPU's answer: Time = 65446 us
+The GPU's answer: Time = 52319 us
+
+size = 23750002
+The CPU's answer: Time = 65588 us
+The GPU's answer: Time = 51479 us
+
+size = 23800002
+The CPU's answer: Time = 65324 us
+The GPU's answer: Time = 51623 us
+
+size = 23850002
+The CPU's answer: Time = 65479 us
+The GPU's answer: Time = 53306 us
+
+size = 23900002
+The CPU's answer: Time = 66769 us
+The GPU's answer: Time = 52906 us
+
+size = 23950002
+The CPU's answer: Time = 65839 us
+The GPU's answer: Time = 53809 us
+
+size = 24000002
+The CPU's answer: Time = 66216 us
+The GPU's answer: Time = 52324 us
+
+size = 24050002
+The CPU's answer: Time = 66473 us
+The GPU's answer: Time = 53519 us
+
+size = 24100002
+The CPU's answer: Time = 67090 us
+The GPU's answer: Time = 53692 us
+
+size = 24150002
+The CPU's answer: Time = 67473 us
+The GPU's answer: Time = 53003 us
+
+size = 24200002
+The CPU's answer: Time = 66708 us
+The GPU's answer: Time = 52551 us
+
+size = 24250002
+The CPU's answer: Time = 66886 us
+The GPU's answer: Time = 51647 us
+
+size = 24300002
+The CPU's answer: Time = 66634 us
+The GPU's answer: Time = 53981 us
+
+size = 24350002
+The CPU's answer: Time = 66809 us
+The GPU's answer: Time = 53551 us
+
+size = 24400002
+The CPU's answer: Time = 67403 us
+The GPU's answer: Time = 52808 us
+
+size = 24450002
+The CPU's answer: Time = 67664 us
+The GPU's answer: Time = 52523 us
+
+size = 24500002
+The CPU's answer: Time = 67377 us
+The GPU's answer: Time = 54514 us
+
+size = 24550002
+The CPU's answer: Time = 67527 us
+The GPU's answer: Time = 54023 us
+
+size = 24600002
+The CPU's answer: Time = 67768 us
+The GPU's answer: Time = 53588 us
+
+size = 24650002
+The CPU's answer: Time = 67840 us
+The GPU's answer: Time = 53089 us
+
+size = 24700002
+The CPU's answer: Time = 68013 us
+The GPU's answer: Time = 54915 us
+
+size = 24750002
+The CPU's answer: Time = 68280 us
+The GPU's answer: Time = 54576 us
+
+size = 24800002
+The CPU's answer: Time = 68410 us
+The GPU's answer: Time = 53769 us
+
+size = 24850002
+The CPU's answer: Time = 68185 us
+The GPU's answer: Time = 53939 us
+
+size = 24900002
+The CPU's answer: Time = 68379 us
+The GPU's answer: Time = 55525 us
+
+size = 24950002
+The CPU's answer: Time = 68905 us
+The GPU's answer: Time = 54755 us
+
+size = 25000002
+The CPU's answer: Time = 68731 us
+The GPU's answer: Time = 54866 us
+
+size = 25050002
+The CPU's answer: Time = 68866 us
+The GPU's answer: Time = 54245 us
+
+size = 25100002
+The CPU's answer: Time = 69998 us
+The GPU's answer: Time = 55841 us
+
+size = 25150002
+The CPU's answer: Time = 69280 us
+The GPU's answer: Time = 55509 us
+
+size = 25200002
+The CPU's answer: Time = 69452 us
+The GPU's answer: Time = 55260 us
+
+size = 25250002
+The CPU's answer: Time = 69592 us
+The GPU's answer: Time = 54751 us
+
+size = 25300002
+The CPU's answer: Time = 69786 us
+The GPU's answer: Time = 54163 us
+
+size = 25350002
+The CPU's answer: Time = 69525 us
+The GPU's answer: Time = 56338 us
+
+size = 25400002
+The CPU's answer: Time = 69736 us
+The GPU's answer: Time = 55943 us
+
+size = 25450002
+The CPU's answer: Time = 70318 us
+The GPU's answer: Time = 55086 us
+
+size = 25500002
+The CPU's answer: Time = 70458 us
+The GPU's answer: Time = 54580 us
+
+size = 25550002
+The CPU's answer: Time = 70260 us
+The GPU's answer: Time = 57048 us
+
+size = 25600002
+The CPU's answer: Time = 70442 us
+The GPU's answer: Time = 56272 us
+
+size = 25650002
+The CPU's answer: Time = 70604 us
+The GPU's answer: Time = 55599 us
+
+size = 25700002
+The CPU's answer: Time = 70728 us
+The GPU's answer: Time = 55431 us
+
+size = 25750002
+The CPU's answer: Time = 70905 us
+The GPU's answer: Time = 57254 us
+
+size = 25800002
+The CPU's answer: Time = 71136 us
+The GPU's answer: Time = 56906 us
+
+size = 25850002
+The CPU's answer: Time = 71318 us
+The GPU's answer: Time = 56328 us
+
+size = 25900002
+The CPU's answer: Time = 71048 us
+The GPU's answer: Time = 56038 us
+
+size = 25950002
+The CPU's answer: Time = 71227 us
+The GPU's answer: Time = 58008 us
+
+size = 26000002
+The CPU's answer: Time = 71809 us
+The GPU's answer: Time = 56901 us
+
+size = 26050002
+The CPU's answer: Time = 72973 us
+The GPU's answer: Time = 57240 us
+
+size = 26100002
+The CPU's answer: Time = 71732 us
+The GPU's answer: Time = 56347 us
+
+size = 26150002
+The CPU's answer: Time = 71933 us
+The GPU's answer: Time = 56176 us
+
+size = 26200002
+The CPU's answer: Time = 72130 us
+The GPU's answer: Time = 57644 us
+
+size = 26250002
+The CPU's answer: Time = 72289 us
+The GPU's answer: Time = 57389 us
+
+size = 26300002
+The CPU's answer: Time = 72470 us
+The GPU's answer: Time = 56938 us
+
+size = 26350002
+The CPU's answer: Time = 72634 us
+The GPU's answer: Time = 56143 us
+
+size = 26400002
+The CPU's answer: Time = 72411 us
+The GPU's answer: Time = 59758 us
+
+size = 26450002
+The CPU's answer: Time = 72545 us
+The GPU's answer: Time = 58117 us
+
+size = 26500002
+The CPU's answer: Time = 73111 us
+The GPU's answer: Time = 57541 us
+
+size = 26550002
+The CPU's answer: Time = 73639 us
+The GPU's answer: Time = 57269 us
+
+size = 26600002
+The CPU's answer: Time = 73462 us
+The GPU's answer: Time = 59172 us
+
+size = 26650002
+The CPU's answer: Time = 73310 us
+The GPU's answer: Time = 58399 us
+
+size = 26700002
+The CPU's answer: Time = 73474 us
+The GPU's answer: Time = 58049 us
+
+size = 26750002
+The CPU's answer: Time = 73626 us
+The GPU's answer: Time = 57696 us
+
+size = 26800002
+The CPU's answer: Time = 73800 us
+The GPU's answer: Time = 59536 us
+
+size = 26850002
+The CPU's answer: Time = 74004 us
+The GPU's answer: Time = 58859 us
+
+size = 26900002
+The CPU's answer: Time = 74162 us
+The GPU's answer: Time = 58199 us
+
+size = 26950002
+The CPU's answer: Time = 73929 us
+The GPU's answer: Time = 58448 us
+
+size = 27000002
+The CPU's answer: Time = 75095 us
+The GPU's answer: Time = 59630 us
+
+size = 27050002
+The CPU's answer: Time = 74693 us
+The GPU's answer: Time = 59849 us
+
+size = 27100002
+The CPU's answer: Time = 74400 us
+The GPU's answer: Time = 59429 us
+
+size = 27150002
+The CPU's answer: Time = 74632 us
+The GPU's answer: Time = 58459 us
+
+size = 27200002
+The CPU's answer: Time = 74815 us
+The GPU's answer: Time = 57980 us
+
+size = 27250002
+The CPU's answer: Time = 74994 us
+The GPU's answer: Time = 60428 us
+
+size = 27300002
+The CPU's answer: Time = 75186 us
+The GPU's answer: Time = 59855 us
+
+size = 27350002
+The CPU's answer: Time = 75334 us
+The GPU's answer: Time = 59426 us
+
+size = 27400002
+The CPU's answer: Time = 75556 us
+The GPU's answer: Time = 58634 us
+
+size = 27450002
+The CPU's answer: Time = 75253 us
+The GPU's answer: Time = 60791 us
+
+size = 27500002
+The CPU's answer: Time = 80479 us
+The GPU's answer: Time = 60424 us
+
+size = 27550002
+The CPU's answer: Time = 76041 us
+The GPU's answer: Time = 59742 us
+
+size = 27600002
+The CPU's answer: Time = 76217 us
+The GPU's answer: Time = 59002 us
+
+size = 27650002
+The CPU's answer: Time = 75978 us
+The GPU's answer: Time = 61358 us
+
+size = 27700002
+The CPU's answer: Time = 76193 us
+The GPU's answer: Time = 61024 us
+
+size = 27750002
+The CPU's answer: Time = 76381 us
+The GPU's answer: Time = 60478 us
+
+size = 27800002
+The CPU's answer: Time = 76490 us
+The GPU's answer: Time = 59831 us
+
+size = 27850002
+The CPU's answer: Time = 76682 us
+The GPU's answer: Time = 61745 us
+
+size = 27900002
+The CPU's answer: Time = 76842 us
+The GPU's answer: Time = 61587 us
+
+size = 27950002
+The CPU's answer: Time = 77069 us
+The GPU's answer: Time = 60832 us
+
+size = 28000002
+The CPU's answer: Time = 77650 us
+The GPU's answer: Time = 60552 us
+
+size = 28050002
+The CPU's answer: Time = 77372 us
+The GPU's answer: Time = 59783 us
+
+size = 28100002
+The CPU's answer: Time = 77576 us
+The GPU's answer: Time = 61609 us
+
+size = 28150002
+The CPU's answer: Time = 77323 us
+The GPU's answer: Time = 61773 us
+
+size = 28200002
+The CPU's answer: Time = 78007 us
+The GPU's answer: Time = 61050 us
+
+size = 28250002
+The CPU's answer: Time = 77678 us
+The GPU's answer: Time = 60158 us
+
+size = 28300002
+The CPU's answer: Time = 77869 us
+The GPU's answer: Time = 62421 us
+
+size = 28350002
+The CPU's answer: Time = 78098 us
+The GPU's answer: Time = 62136 us
+
+size = 28400002
+The CPU's answer: Time = 78265 us
+The GPU's answer: Time = 61536 us
+
+size = 28450002
+The CPU's answer: Time = 78388 us
+The GPU's answer: Time = 61000 us
+
+size = 28500002
+The CPU's answer: Time = 78166 us
+The GPU's answer: Time = 63115 us
+
+size = 28550002
+The CPU's answer: Time = 78316 us
+The GPU's answer: Time = 62807 us
+
+size = 28600002
+The CPU's answer: Time = 78910 us
+The GPU's answer: Time = 61925 us
+
+size = 28650002
+The CPU's answer: Time = 79078 us
+The GPU's answer: Time = 61293 us
+
+size = 28700002
+The CPU's answer: Time = 79841 us
+The GPU's answer: Time = 64032 us
+
+size = 28750002
+The CPU's answer: Time = 79041 us
+The GPU's answer: Time = 62989 us
+
+size = 28800002
+The CPU's answer: Time = 79273 us
+The GPU's answer: Time = 63038 us
+
+size = 28850002
+The CPU's answer: Time = 79515 us
+The GPU's answer: Time = 63070 us
+
+size = 28900002
+The CPU's answer: Time = 79753 us
+The GPU's answer: Time = 64206 us
+
+size = 28950002
+The CPU's answer: Time = 81088 us
+The GPU's answer: Time = 63819 us
+
+size = 29000002
+The CPU's answer: Time = 79905 us
+The GPU's answer: Time = 62927 us
+
+size = 29050002
+The CPU's answer: Time = 79678 us
+The GPU's answer: Time = 62719 us
+
+size = 29100002
+The CPU's answer: Time = 80289 us
+The GPU's answer: Time = 62222 us
+
+size = 29150002
+The CPU's answer: Time = 80437 us
+The GPU's answer: Time = 64107 us
+
+size = 29200002
+The CPU's answer: Time = 80239 us
+The GPU's answer: Time = 64026 us
+
+size = 29250002
+The CPU's answer: Time = 80406 us
+The GPU's answer: Time = 63222 us
+
+size = 29300002
+The CPU's answer: Time = 81652 us
+The GPU's answer: Time = 62676 us
+
+size = 29350002
+The CPU's answer: Time = 80747 us
+The GPU's answer: Time = 64694 us
+
+size = 29400002
+The CPU's answer: Time = 80891 us
+The GPU's answer: Time = 64194 us
+
+size = 29450002
+The CPU's answer: Time = 81097 us
+The GPU's answer: Time = 63663 us
+
+size = 29500002
+The CPU's answer: Time = 81269 us
+The GPU's answer: Time = 62888 us
+
+size = 29550002
+The CPU's answer: Time = 81037 us
+The GPU's answer: Time = 65469 us
+
+size = 29600002
+The CPU's answer: Time = 81253 us
+The GPU's answer: Time = 65157 us
+
+size = 29650002
+The CPU's answer: Time = 81897 us
+The GPU's answer: Time = 64058 us
+
+size = 29700002
+The CPU's answer: Time = 82034 us
+The GPU's answer: Time = 63572 us
+
+size = 29750002
+The CPU's answer: Time = 81735 us
+The GPU's answer: Time = 66164 us
+
+size = 29800002
+The CPU's answer: Time = 81887 us
+The GPU's answer: Time = 65179 us
+
+size = 29850002
+The CPU's answer: Time = 82159 us
+The GPU's answer: Time = 65262 us
+
+size = 29900002
+The CPU's answer: Time = 83069 us
+The GPU's answer: Time = 64347 us
+
+size = 29950002
+The CPU's answer: Time = 82468 us
+The GPU's answer: Time = 63796 us

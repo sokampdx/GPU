@@ -16,7 +16,9 @@ Modify the vector_addition.cu example to time how long it takes the CPU and GPU 
 #include <stdio.h>
 
 
-const int SIZE = 5;
+const int SIZE = 2;
+const int MAX = 214783647 ;
+
 
 /* The old-fashioned CPU-only way to add two vectors */
 void add_vectors_host(int *result, int *a, int *b, int n) 
@@ -95,19 +97,20 @@ void print_time(timeval start, timeval end)
 }
 
 
-// main function
-int main(void) 
+// loop over size
+int vector_add_size(int size) 
 {
-    int n = SIZE; // Length of the arrays
+    int n = size; // Length of the arrays
+    int rand = n % 7;
 //    int a[] = {0, 1, 2, 3, 4};
 //    int b[] = {5, 6, 7, 8, 9};
 //    int host_result[5];
 //    int device_result[5];
 
-    int *a = (int *) malloc(SIZE * sizeof(int));
-    int *b = (int *) malloc(SIZE * sizeof(int));
-    int *host_result = (int *) malloc(SIZE * sizeof(int));
-    int *device_result = (int *) malloc(SIZE * sizeof(int));
+    int *a = (int *) malloc(n * sizeof(int));
+    int *b = (int *) malloc(n * sizeof(int));
+    int *host_result = (int *) malloc(n * sizeof(int));
+    int *device_result = (int *) malloc(n * sizeof(int));
 
     // verify malloc
     if (!(a && b && host_result && device_result))
@@ -119,16 +122,16 @@ int main(void)
     struct timeval start, end;
 
     // create variable size matrix
-    for (int i = 0; i < n; ++i)
+    for (int i = rand; i < n; ++i)
     {
         a[i] = i;
         b[i] = SIZE + i;
     } 
 
-
+/*
     int deviceCount;
     int device;
-    
+   
     // show cuda capability
     cudaGetDeviceCount(&deviceCount);
     for (device = 0; device < deviceCount; ++device) {
@@ -137,21 +140,21 @@ int main(void)
         printf("Device %d has compute capability %d.%d.\n",
                device, deviceProp.major, deviceProp.minor);
     }
-
+*/
 
     // print answers:
     printf("The CPU's answer: ");
     gettimeofday(&start, NULL);
     add_vectors_host(host_result, a, b, n);
     gettimeofday(&end, NULL);
-    print_vector(host_result, n);
+//    print_vector(host_result, n);
     print_time(start, end);
 
     printf("The GPU's answer: ");
     gettimeofday(&start, NULL);
     add_vectors_dev(device_result, a, b, n);
     gettimeofday(&end, NULL);
-    print_vector(device_result, n);
+//    print_vector(device_result, n);
     print_time(start, end); 
 
 
@@ -163,4 +166,26 @@ int main(void)
 
     return 0;
 }
+
+
+// main function
+int main(void)
+{
+    int size = SIZE;
+    int min = size;
+    int max = 30000000;
+    int inc = 50000;
+
+//    for (int i = size; i < MAX; i*=size)
+    for (int i = min; i <= max; i+=inc)
+    {
+	printf("\nsize = %d\n", i);	
+        vector_add_size(i);
+    }
+    return 0;
+}
+
+
+
+
 
