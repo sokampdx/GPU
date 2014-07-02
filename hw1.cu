@@ -17,7 +17,6 @@ Modify the vector_addition.cu example to time how long it takes the CPU and GPU 
 
 
 const int SIZE = 5;
-const int TOTAL = SIZE * SIZE;
 
 /* The old-fashioned CPU-only way to add two vectors */
 void add_vectors_host(int *result, int *a, int *b, int n) 
@@ -92,31 +91,44 @@ void print_vector(int *array, int n)
 // This function print out the different in time
 void print_time(timeval start, timeval end)
 {
-    printf("Time = ");
-    printf("%ld", ((end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec)));
-    printf("\n");
+    printf("Time = %ld us\n", ((end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec )));
 }
 
 
 // main function
 int main(void) 
 {
-    int n = 5; // Length of the arrays
-    int a[] = {0, 1, 2, 3, 4};
-    int b[] = {5, 6, 7, 8, 9};
-    int host_result[5];
-    int device_result[5];
+    int n = SIZE; // Length of the arrays
+//    int a[] = {0, 1, 2, 3, 4};
+//    int b[] = {5, 6, 7, 8, 9};
+//    int host_result[5];
+//    int device_result[5];
+
+    int *a = (int *) malloc(SIZE * sizeof(int));
+    int *b = (int *) malloc(SIZE * sizeof(int));
+    int *host_result = (int *) malloc(SIZE * sizeof(int));
+    int *device_result = (int *) malloc(SIZE * sizeof(int));
+
+    // verify malloc
+    if (!(a && b && host_result && device_result))
+    {
+        printf("out of memory\n");
+        return(-1);
+    }
 
     struct timeval start, end;
+
+    // create variable size matrix
+    for (int i = 0; i < n; ++i)
+    {
+        a[i] = i;
+        b[i] = SIZE + i;
+    } 
+
 
     int deviceCount;
     int device;
     
-    // create variable size matrix
-
-
-
-
     // show cuda capability
     cudaGetDeviceCount(&deviceCount);
     for (device = 0; device < deviceCount; ++device) {
@@ -126,8 +138,8 @@ int main(void)
                device, deviceProp.major, deviceProp.minor);
     }
 
-    // print answers:
 
+    // print answers:
     printf("The CPU's answer: ");
     gettimeofday(&start, NULL);
     add_vectors_host(host_result, a, b, n);
@@ -141,6 +153,13 @@ int main(void)
     gettimeofday(&end, NULL);
     print_vector(device_result, n);
     print_time(start, end); 
+
+
+    // free memory
+    free(a);
+    free(b);
+    free(host_result);
+    free(device_result);
 
     return 0;
 }
