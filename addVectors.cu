@@ -19,7 +19,9 @@ __global__ void kernel(int* res, int* a, int* b) {
 
   int thread_id = threadIdx.x + blockIdx.x*blockDim.x;
   if(thread_id < N) {
-    res[thread_id] = a[thread_id] + b[thread_id];
+//    res[thread_id] = a[thread_id] + b[thread_id];
+    res[thread_id] = thread_id + thread_id;
+
   }
 }
 
@@ -62,8 +64,8 @@ int main() {
   check(cudaEventRecord(start,0));
 
   //transfer a and b to the GPU
-  check(cudaMemcpy(a_dev, a, N*sizeof(int), cudaMemcpyHostToDevice));
-  check(cudaMemcpy(b_dev, b, N*sizeof(int), cudaMemcpyHostToDevice));
+//  check(cudaMemcpy(a_dev, a, N*sizeof(int), cudaMemcpyHostToDevice));
+//  check(cudaMemcpy(b_dev, b, N*sizeof(int), cudaMemcpyHostToDevice));
 
   //call the kernel
   int threads = 512;                   //# threads per block
