@@ -22,22 +22,46 @@ Any dead cell with exactly three live neighbours becomes a live cell, as if by r
 #define WIDTH 60
 #define HEIGHT 30
 #define MAX 150
+#define LIMIT 512
 
 // global const
 const int offsets[8][2] = {{-1, 1},{0, 1},{1, 1},
                            {-1, 0},       {1, 0},
                            {-1,-1},{0,-1},{1,-1}};
 
+__constant__ int offsets_dev[8][2] = {{-1, 1},{0, 1},{1, 1},
+                                      {-1, 0},       {1, 0},
+                                      {-1,-1},{0,-1},{1,-1}};
 
 /* The kernel that will execute on the GPU */
-__global__ void step_kernel(int *result, int *board, int width, int height) {
+__global__ void step_kernel(int *board, int *result, int width, int height) {
     int n = width * height;
     int idx = blockDim.x * blockIdx.x + threadIdx.x;
-    // If we have more threads than the magnitude of our vector, we need to
-    // make sure that the excess threads don't try to save results into
-    // unallocated memory.
-    if (idx < n)
-        result[idx] = board[idx];
+    int num_neighbors = 0;
+    int nx = 0;
+    int ny = 0;
+    int x = idx % width;
+    int y = idx / width;
+    int i = 0;
+
+    for (i=0; i<8; i++) {
+        // To make the board torroidal, we use modular arithmetic to
+        // wrap neighbor coordinates around to the other side of the
+        // board if they fall off.
+        nx = (x + offsets_dev[i][0] + width) % width;
+        ny = (y + offsets_dev[i][1] + height) % height;
+        if (board[ny * width + nx]) {
+            num_neighbors++;
+        }
+    }
+
+    // apply the Game of Life rules to this cell
+    result[idx] = 0;
+
+    if (idx < n && ((board[idx] && num_neighbors==2) || num_neighbors==3)) {
+        result[idx] = 1;
+    }
+
 }
 
 /* This function encapsulates the process of creating and tearing down the
@@ -49,7 +73,7 @@ __global__ void step_kernel(int *result, int *board, int width, int height) {
  *   4. Retrieve the result board vector from the device by copying it to the host
  *   5. Free memory on the device
  */
-void step_dev(int *result, int *board, int width, int height) {
+void step_dev(int *board, int *result, int width, int height) {
     // Step 1: Allocate memory
     int *board_dev, *result_dev;
     int n = width * height;
@@ -69,9 +93,9 @@ void step_dev(int *result, int *board, int width, int height) {
     // accomodate all `n` elements in the vectors. The 512 long block size
     // is somewhat arbitrary, but with the constraint that we know the
     // hardware will support blocks of that size.
-    dim3 dimGrid((n + 512 - 1) / 512, 1, 1);
-    dim3 dimBlock(512, 1, 1);
-    step_kernel<<<dimGrid, dimBlock>>>(result_dev, board_dev, width, height);
+    dim3 dimGrid((n + LIMIT - 1) / LIMIT, 1, 1);
+    dim3 dimBlock(LIMIT, 1, 1);
+    step_kernel<<<dimGrid, dimBlock>>>(board_dev, result_dev, width, height);
 
     // Step 4: Retrieve the results
     cudaMemcpy(result, result_dev, sizeof(int) * n, cudaMemcpyDeviceToHost);
@@ -152,7 +176,7 @@ void animate(int *current, int *next, int width, int height) {
     for (int i = 0; i < MAX; ++i) {
 	printf("%d\n", i);
         print_board(current, width, height);
-        step(current, next, width, height);
+        step_dev(current, next, width, height);
         // Copy the next state, that step() just wrote into, to current state
         memcpy(current, next, sizeof(int) * width * height);
         // We sleep only because textual output is slow and the console needs
