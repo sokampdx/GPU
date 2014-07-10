@@ -56,11 +56,10 @@ __global__ void step_kernel(int *board, int *result, int width, int height) {
     }
 
     // apply the Game of Life rules to this cell
-    result[idx] = 0;
-
-    if (idx < n && ((board[idx] && num_neighbors==2) || num_neighbors==3)) {
+    if (idx < n && ((board[idx] && num_neighbors==2) || num_neighbors==3))
         result[idx] = 1;
-    }
+    else
+        result[idx] = 0;
 
 }
 
