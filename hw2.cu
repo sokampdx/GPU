@@ -19,22 +19,29 @@ Any dead cell with exactly three live neighbours becomes a live cell, as if by r
 #include <stdlib.h>
 #include <string.h>
 
-#define WIDTH 60
-#define HEIGHT 30
-#define MAX 150
+#define WIDTH 32 
+#define HEIGHT 32
+#define MAX 50
 #define LIMIT 512
+#define TILE 32
+#define NEIGHBORS 8
+#define ROW 0
+#define COL 1
 
 // global const
-const int offsets[8][2] = {{-1, 1},{0, 1},{1, 1},
-                           {-1, 0},       {1, 0},
-                           {-1,-1},{0,-1},{1,-1}};
+const int offsets[NEIGHBORS][2] = {{-1, 1},{0, 1},{1, 1},
+                                   {-1, 0},       {1, 0},
+                                   {-1,-1},{0,-1},{1,-1}};
 
-__constant__ int offsets_dev[8][2] = {{-1, 1},{0, 1},{1, 1},
-                                      {-1, 0},       {1, 0},
-                                      {-1,-1},{0,-1},{1,-1}};
+__constant__ int offsets_dev[NEIGHBORS][2] = {{-1, 1},{0, 1},{1, 1},
+                                              {-1, 0},       {1, 0},
+                                              {-1,-1},{0,-1},{1,-1}};
 
 /* The kernel that will execute on the GPU */
 __global__ void step_kernel(int *board, int *result, int width, int height) {
+
+    __shared__ int num_col[TILE];
+
     int n = width * height;
     int idx = blockDim.x * blockIdx.x + threadIdx.x;
     int num_neighbors = 0;
@@ -42,21 +49,32 @@ __global__ void step_kernel(int *board, int *result, int width, int height) {
     int ny = 0;
     int x = idx % width;
     int y = idx / width;
+    int center = board[idx];
     int i = 0;
 
-    for (i=0; i<8; i++) {
-        // To make the board torroidal, we use modular arithmetic to
-        // wrap neighbor coordinates around to the other side of the
-        // board if they fall off.
-        nx = (x + offsets_dev[i][0] + width) % width;
-        ny = (y + offsets_dev[i][1] + height) % height;
-        if (board[ny * width + nx]) {
-            num_neighbors++;
-        }
+    num_col[x] = 0;
+
+    __syncthreads();
+
+    for (i = -1; i <= 1; ++i) {
+//        nx = (x + offsets_dev[i][ROW] + width) % width;
+        ny = (y + i + height) % height;
+        num_col[x] += board[ny * width + x];
+    }
+   
+    __syncthreads();          
+
+    for (i = 1; i >= -1; --i) {
+        nx = (x + i + TILE) % TILE;
+        num_neighbors += num_col[nx];
     }
 
+    __syncthreads();
+
+    num_neighbors -= center;    
+
     // apply the Game of Life rules to this cell
-    if (idx < n && ((board[idx] && num_neighbors==2) || num_neighbors==3))
+    if (idx < n && ((center && num_neighbors==2) || num_neighbors==3))
         result[idx] = 1;
     else
         result[idx] = 0;
@@ -118,12 +136,12 @@ void step(int *current, int *next, int width, int height) {
         for (x=0; x<width; x++) {
             // count this cell's alive neighbors
             num_neighbors = 0;
-            for (i=0; i<8; i++) {
+            for (i = 0; i < NEIGHBORS; i++) {
                 // To make the board torroidal, we use modular arithmetic to
                 // wrap neighbor coordinates around to the other side of the
                 // board if they fall off.
-                nx = (x + offsets[i][0] + width) % width;
-                ny = (y + offsets[i][1] + height) % height;
+                nx = (x + offsets[i][ROW] + width) % width;
+                ny = (y + offsets[i][COL] + height) % height;
                 if (current[ny * width + nx]) {
                     num_neighbors++;
                 }
@@ -131,8 +149,7 @@ void step(int *current, int *next, int width, int height) {
 
             // apply the Game of Life rules to this cell
             next[y * width + x] = 0;
-            if ((current[y * width + x] && num_neighbors==2) ||
-                    num_neighbors==3) {
+            if ((current[y * width + x] && num_neighbors==2) || num_neighbors==3) {
                 next[y * width + x] = 1;
             }
         }
@@ -145,7 +162,7 @@ void step(int *current, int *next, int width, int height) {
 // fill the board with random cells
 void fill_board(int *board, int width, int height) {
     int i;
-    for (i=0; i < (width * height); i++)
+    for (i = 0; i < (width * height); i++)
         board[i] = rand() % 2;
 }
 
@@ -153,8 +170,8 @@ void fill_board(int *board, int width, int height) {
 // print board image
 void print_board(int *board, int width, int height) {
     int x, y;
-    for (y=0; y<height; y++) {
-        for (x=0; x<width; x++) {
+    for (y = 0; y<height; y++) {
+        for (x = 0; x<width; x++) {
             char c = board[y * width + x] ? '#':' ';
             printf("%c", c);
         }
@@ -167,7 +184,9 @@ void print_board(int *board, int width, int height) {
 
 // animate each cell
 void animate(int *current, int *next, int width, int height) {
-    struct timespec delay = {0, 125000000}; // 0.125 seconds
+    struct timespec delay = {0, 0}; // 0.005 seconds
+//    struct timespec delay = {0, 125000000}; // 0.125 seconds
+//    struct timespec delay = {0, 250000000}; // 0.25 seconds
     struct timespec remaining;
 
 
