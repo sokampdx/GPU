@@ -38,7 +38,9 @@ const int VERTMASK[9] = {1, 0, 0, 1, 0, 0, 1, 0, 0};
 
 // The kernel that will execute on the GPU
 __global__ void basic_2d_kernel(int *board, int *result, int width, int height) {
+
 }
+
 
 // This function encapsulates the process of creating and tearing down the
 // environment used to execute our game of life iteration kernel. The steps of the
@@ -49,20 +51,23 @@ __global__ void basic_2d_kernel(int *board, int *result, int width, int height) 
 //   4. Retrieve the result board vector from the device by copying it to the host
 //   5. Free memory on the device
 //
-void basic_2d_dev(int *board, int *result, int width, int height) {
+void basic_2d_dev(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
     // Step 1: Allocate memory
-    int *board_dev, *result_dev;
+    int *start_dev, *mask_dev,  *result_dev;
     int n = width * height;
+    int m = mask_width * mask_height;
 
     // Since cudaMalloc does not return a pointer like C's traditional malloc
     // (it returns a success status instead), we provide as it's first argument
     // the address of our device pointer variable so that it can change the
     // value of our pointer to the correct device address.
-    cudaMalloc((void **) &board_dev, sizeof(int) * n);
+    cudaMalloc((void **) &start_dev, sizeof(int) * n);
     cudaMalloc((void **) &result_dev, sizeof(int) * n);
+    cudaMalloc((void **) &mask_dev, sizeof(int) * m);
 
     // Step 2: Copy the input vectors to the device
-    cudaMemcpy(board_dev, board, sizeof(int) * n, cudaMemcpyHostToDevice);
+    cudaMemcpy(start_dev, start, sizeof(int) * n, cudaMemcpyHostToDevice);
+    cudaMemcpy(mask_dev, mask, sizeof(int) * m, cudaMemcpyHostToDevice);
 
     // Step 3: Invoke the kernel
     // We allocate enough blocks (each 512 threads long) in the grid to
@@ -80,8 +85,8 @@ void basic_2d_dev(int *board, int *result, int width, int height) {
     cudaFree(board_dev);
     cudaFree(result_dev);
 }
-
 */
+
 
 // The old-fashioned CPU-only way
 void basic_2d_host(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
@@ -163,14 +168,46 @@ void normalize_image(int *image, int width, int height, int scale) {
 }
 
 
+// show device capability
+void device_check() {
+    int deviceCount;
+    int device;
+
+    cudaGetDeviceCount(&deviceCount);
+    for (device = 0; device < deviceCount; ++device) {
+        cudaDeviceProp deviceProp;
+        cudaGetDeviceProperties(&deviceProp, device);
+        printf("Device %d has compute capability %d.%d\n", 
+               device, deviceProp.major, deviceProp.minor);
+	printf("Max Threads per Block: %d \n", deviceProp.maxThreadsPerBlock);
+	printf("Max Threads for x direction per Block: %d \n", deviceProp.maxThreadsDim[0]);
+	printf("Max Threads for y direction per Block: %d \n", deviceProp.maxThreadsDim[1]);
+	printf("Max Threads for z direction per Block: %d \n", deviceProp.maxThreadsDim[2]);
+	printf("Max Blocks for x direction per Grid: %d \n", deviceProp.maxGridSize[0]);
+	printf("Max Blocks for y direction per Grid: %d \n", deviceProp.maxGridSize[1]);
+	printf("Max Blocks for z direction per Grid: %d \n", deviceProp.maxGridSize[2]);
+        printf("Max Warp Size: %d \n", deviceProp.warpSize);
+        printf("Number of SM: %d \n", deviceProp.multiProcessorCount);
+        printf("Max Threads per SM: %d \n", deviceProp.maxThreadsPerMultiProcessor);
+        printf("Number of Registers in each SM: %d \n", deviceProp.regsPerBlock);
+        printf("Amount of Shared Memory Available: %zd \n", deviceProp.sharedMemPerBlock);
+        printf("Amount of Constant Memory Available: %zd \n", deviceProp.totalConstMem);
+        printf("Amount of Global Memory Available: %zd \n", deviceProp.totalGlobalMem);
+        printf("Clock Rate: %d \n", deviceProp.clockRate);
+        printf("\n\n");
+    }
+}
+
+
+
 // main function
 int main(void) {
     // variable
     int n = WIDTH * HEIGHT;
     int m = MASK_WIDTH * MASK_HEIGHT;
     int *start = (int *) malloc(n* sizeof(int));
-//    int *mask = (int *) malloc(m * sizeof(int));
-    int *mask = (int *) VERTMASK;
+    int *mask = (int *) malloc(m * sizeof(int));
+//    int *mask = (int *) VERTMASK;
     int *result = (int *) malloc(n * sizeof(int));
 
     int i = 0;
@@ -179,13 +216,19 @@ int main(void) {
     // initialize rand seed
     srand(time(NULL));
 
+    // device property check
+    device_check();
+
     // initialize the global images
-//    fill_image(mask, MASK_WIDTH, MASK_HEIGHT, RANGE);
+    fill_image(mask, MASK_WIDTH, MASK_HEIGHT, RANGE);
     print_image(mask, MASK_WIDTH, MASK_HEIGHT);
-//    fill_image(start, WIDTH, HEIGHT, RANGE);
-    fill_pattern(start, WIDTH, HEIGHT, RANGE);
+    fill_image(start, WIDTH, HEIGHT, RANGE);
+//    fill_pattern(start, WIDTH, HEIGHT, RANGE);
     print_image(start, WIDTH, HEIGHT);
+    basic_2d_host(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
+    print_image(result, WIDTH, HEIGHT);    
     
+/*
     while (i < LIMIT) {
         basic_2d_host(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
         normalize_image(result, WIDTH, HEIGHT, RANGE);
@@ -195,10 +238,11 @@ int main(void) {
         start = temp;
         ++i;
     }
+*/
 
     // free memory
     free(start);
-//    free(mask);
+    free(mask);
     free(result);
 
     return 0;
