@@ -25,7 +25,7 @@ Submit your code and your performance results by email to:
 #define MASK_WIDTH 3
 #define MASK_HEIGHT 3
 #define MAX 2000
-#define LIMIT 100
+#define LIMIT 32
 #define RANGE 10
 #define ROW 0
 #define COL 1
@@ -34,11 +34,17 @@ Submit your code and your performance results by email to:
 
 const int DIAGMASK[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};
 const int VERTMASK[9] = {1, 0, 0, 1, 0, 0, 1, 0, 0};
-/*
+
 
 // The kernel that will execute on the GPU
-__global__ void basic_2d_kernel(int *board, int *result, int width, int height) {
+__global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
 
+    int current_x = blockDim.x * blockIdx.x + threadIdx.x;
+    int current_y = blockDim.y * blockIdx.y + threadIdx.y;
+    
+    if ((current_x < width) && (current_y < height)) {
+        result[current_y * width + current_x] = start[current_y * width + current_x];
+    }
 }
 
 
@@ -70,22 +76,19 @@ void basic_2d_dev(int *start, int *mask, int *result, int width, int height, int
     cudaMemcpy(mask_dev, mask, sizeof(int) * m, cudaMemcpyHostToDevice);
 
     // Step 3: Invoke the kernel
-    // We allocate enough blocks (each 512 threads long) in the grid to
-    // accomodate all `n` elements in the vectors. The 512 long block size
-    // is somewhat arbitrary, but with the constraint that we know the
-    // hardware will support blocks of that size.
-    dim3 dimGrid((n + LIMIT - 1) / LIMIT, 1, 1);
-    dim3 dimBlock(LIMIT, 1, 1);
-    step_kernel<<<dimGrid, dimBlock>>>(board_dev, result_dev, width, height);
+    dim3 dimGrid(LIMIT, LIMIT, 1);
+    dim3 dimBlock(ceil(width/ (float) LIMIT), ceil(height/ (float) LIMIT), 1);
+    basic_2d_kernel<<<dimGrid, dimBlock>>>(start_dev, mask_dev, result_dev, width, height, mask_width, mask_height);
 
     // Step 4: Retrieve the results
     cudaMemcpy(result, result_dev, sizeof(int) * n, cudaMemcpyDeviceToHost);
 
     // Step 5: Free device memory
-    cudaFree(board_dev);
+    cudaFree(start_dev);
+    cudaFree(mask_dev);
     cudaFree(result_dev);
 }
-*/
+
 
 
 // The old-fashioned CPU-only way
@@ -225,7 +228,8 @@ int main(void) {
     fill_image(start, WIDTH, HEIGHT, RANGE);
 //    fill_pattern(start, WIDTH, HEIGHT, RANGE);
     print_image(start, WIDTH, HEIGHT);
-    basic_2d_host(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
+//    basic_2d_host(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
+    basic_2d_dev(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
     print_image(result, WIDTH, HEIGHT);    
     
 /*
