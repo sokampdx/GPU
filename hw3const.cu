@@ -39,11 +39,11 @@ I also coment locations where non-const memory version of code are located.
 const int DIAGMASK[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};
 const int VERTMASK[9] = {1, 0, 0, 1, 0, 0, 1, 0, 0};
 
-// ->>> __constant__ int MASK[MASK_WIDTH * MASK_HEIGHT];
+__constant__ int MASK[MASK_WIDTH * MASK_HEIGHT];
 
 // The kernel that will execute on the GPU
-// ->>> __global__ void basic_2d_kernel(int *start, int *result, int width, int height, int mask_width, int mask_height) {
-__global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
+__global__ void basic_2d_kernel(int *start, int *result, int width, int height, int mask_width, int mask_height) {
+// __global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
     // declare kernel variable
     int center_x = blockDim.x * blockIdx.x + threadIdx.x;
     int center_y = blockDim.y * blockIdx.y + threadIdx.y;
@@ -59,8 +59,8 @@ __global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, i
             for (int x = 0; x < mask_width; x++) {
                 current_x = (n_x_start_point + x + width) % width;
                 if ((current_x >= 0) && (current_x < width)) {
-                    pvalue += start[(current_y * width) + current_x] * mask[(y * mask_width) + x];    // only for non-const memory version
-// ->>>                    pvalue += start[(current_y * width) + current_x] * MASK[(y * mask_width) + x];
+//                    pvalue += start[(current_y * width) + current_x] * mask[(y * mask_width) + x];    // only for non-const memory version
+                    pvalue += start[(current_y * width) + current_x] * MASK[(y * mask_width) + x];
                 }
             }
         }
@@ -80,7 +80,7 @@ __global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, i
 //
 void basic_2d_dev(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
     // Step 1: Allocate memory
-    int *mask_dev;    // only for non-const memory version
+//    int *mask_dev;    // only for non-const memory version
     int *start_dev,  *result_dev;
     int n = width * height;
     int m = mask_width * mask_height;
@@ -91,19 +91,19 @@ void basic_2d_dev(int *start, int *mask, int *result, int width, int height, int
     // value of our pointer to the correct device address.
     cudaMalloc((void **) &start_dev, sizeof(int) * n);
     cudaMalloc((void **) &result_dev, sizeof(int) * n);
-    cudaMalloc((void **) &mask_dev, sizeof(int) * m);    // only for non-const memory version
+//    cudaMalloc((void **) &mask_dev, sizeof(int) * m);    // only for non-const memory version
 
     // Step 2: Copy the input vectors to the device
     cudaMemcpy(start_dev, start, sizeof(int) * n, cudaMemcpyHostToDevice);
-    cudaMemcpy(mask_dev, mask, sizeof(int) * m, cudaMemcpyHostToDevice);    // only for non-const memory version
-// ->>>    cudaMemcpyToSymbol(MASK, mask, sizeof(int) * m);    // only for const memory version
+//    cudaMemcpy(mask_dev, mask, sizeof(int) * m, cudaMemcpyHostToDevice);    // only for non-const memory version
+    cudaMemcpyToSymbol(MASK, mask, sizeof(int) * m);    // only for const memory version
 
 
     // Step 3: Invoke the kernel
     dim3 dimGrid(TILESIZE, TILESIZE, 1);
     dim3 dimBlock(ceil(width/ (float) TILESIZE), ceil(height/ (float) TILESIZE), 1);
-    basic_2d_kernel<<<dimGrid, dimBlock>>>(start_dev, mask_dev, result_dev, width, height, mask_width, mask_height);
-// ->>>    basic_2d_kernel<<<dimGrid, dimBlock>>>(start_dev, result_dev, width, height, mask_width, mask_height);   // only for const memory version
+//    basic_2d_kernel<<<dimGrid, dimBlock>>>(start_dev, mask_dev, result_dev, width, height, mask_width, mask_height); // only for non-const memory version
+    basic_2d_kernel<<<dimGrid, dimBlock>>>(start_dev, result_dev, width, height, mask_width, mask_height);   // only for const memory version
 
     // Step 4: Retrieve the results
     cudaMemcpy(result, result_dev, sizeof(int) * n, cudaMemcpyDeviceToHost);
@@ -111,7 +111,7 @@ void basic_2d_dev(int *start, int *mask, int *result, int width, int height, int
     // Step 5: Free device memory
     cudaFree(start_dev);
     cudaFree(result_dev);
-    cudaFree(mask_dev);    // only for non-const memory version
+//    cudaFree(mask_dev);    // only for non-const memory version
 }
 
 
