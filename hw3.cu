@@ -38,14 +38,27 @@ const int VERTMASK[9] = {1, 0, 0, 1, 0, 0, 1, 0, 0};
 
 // The kernel that will execute on the GPU
 __global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
+    // declare kernel variable
+    int center_x = blockDim.x * blockIdx.x + threadIdx.x;
+    int center_y = blockDim.y * blockIdx.y + threadIdx.y;
+    int current_x, current_y;
+    int n_x_start_point = center_x - (mask_width / 2);
+    int n_y_start_point = center_y - (mask_height / 2);
+    int pvalue = 0;    
 
-    int current_x = blockDim.x * blockIdx.x + threadIdx.x;
-    int current_y = blockDim.y * blockIdx.y + threadIdx.y;
-    
-    if ((current_x < width) && (current_y < height)) {
-        
-        result[current_y * width + current_x] = start[current_y * width + current_x];
+    // loop thru the mask area for one location
+    for (int y = 0; y < mask_height; y++) {
+        current_y = (n_y_start_point + y + height) % height;
+        if ((current_y >= 0) && (current_y < height)) {
+            for (int x = 0; x < mask_width; x++) {
+                current_x = (n_x_start_point + x + width) % width;
+                if ((current_x >= 0) && (current_x < width)) {
+                    pvalue += start[(current_y * width) + current_x] * mask[(y * mask_width) + x];
+                }
+            }
+        }
     }
+    result[(center_y * width) + center_x] = pvalue;
 }
 
 
@@ -226,9 +239,9 @@ int main(void) {
 
     // mask variable 
     int m = MASK_WIDTH * MASK_HEIGHT;
-    int *mask = (int *) malloc(m * sizeof(int));
+//    int *mask = (int *) malloc(m * sizeof(int));
 //    int *mask = (int *) VERTMASK;    // static mask with vertical 1's       
-//    int *mask = (int *) DIAGMASK;    // static mask with diagonal 1's
+    int *mask = (int *) DIAGMASK;    // static mask with diagonal 1's
 
     // additional variable
     int i = 0;
@@ -240,18 +253,18 @@ int main(void) {
     // initialize rand seed
     srand(time(NULL));
 
-    // check device property
+    // check device property (warm up device...)
     device_check();
 
     // initialize the mask image and global image
     print_divider();
-    fill_image(mask, MASK_WIDTH, MASK_HEIGHT, RANGE);
+//    fill_image(mask, MASK_WIDTH, MASK_HEIGHT, RANGE);
     print_image(mask, MASK_WIDTH, MASK_HEIGHT);
     fill_image(start, WIDTH, HEIGHT, RANGE);
 //    fill_pattern(start, WIDTH, HEIGHT, RANGE);
     print_image(start, WIDTH, HEIGHT);
 
-    // run 2d convulotion with timer
+    // run 2d convulotion with timer and print result
     gettimeofday(&begin, NULL);
 //    basic_2d_host(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
     basic_2d_dev(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
@@ -259,6 +272,7 @@ int main(void) {
     print_image(result, WIDTH, HEIGHT);    
     print_time(begin, end);
     print_divider();
+
 /*    
     // loop thru the same mask on the result 
     while (i < LIMIT) {
@@ -274,8 +288,8 @@ int main(void) {
 
     // free memory
     free(start);
-    free(mask);
     free(result);
+//    free(mask);
 
     return 0;
 }
