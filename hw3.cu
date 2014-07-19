@@ -43,6 +43,7 @@ __global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, i
     int current_y = blockDim.y * blockIdx.y + threadIdx.y;
     
     if ((current_x < width) && (current_y < height)) {
+        
         result[current_y * width + current_x] = start[current_y * width + current_x];
     }
 }
@@ -141,7 +142,14 @@ void fill_pattern(int *image, int width, int height, int scale) {
 }
 
 
-// print mask image
+// print divider
+void print_divider() {
+    printf("---------------------------------------\n");
+}
+
+
+
+// print image
 void print_image(int *image, int width, int height) {
     int x, y;
     for (y = 0; y<height; y++) {
@@ -150,7 +158,7 @@ void print_image(int *image, int width, int height) {
         }
         printf("\n");
     }
-    printf("-----\n");
+    print_divider();
 }
 
 
@@ -180,6 +188,7 @@ void device_check() {
     for (device = 0; device < deviceCount; ++device) {
         cudaDeviceProp deviceProp;
         cudaGetDeviceProperties(&deviceProp, device);
+        print_divider();
         printf("Device %d has compute capability %d.%d\n", 
                device, deviceProp.major, deviceProp.minor);
 	printf("Max Threads per Block: %d \n", deviceProp.maxThreadsPerBlock);
@@ -197,42 +206,61 @@ void device_check() {
         printf("Amount of Constant Memory Available: %zd \n", deviceProp.totalConstMem);
         printf("Amount of Global Memory Available: %zd \n", deviceProp.totalGlobalMem);
         printf("Clock Rate: %d \n", deviceProp.clockRate);
-        printf("\n\n");
+        print_divider();
     }
 }
 
 
+// print different of two times
+void print_time(timeval begin, timeval end) {
+    printf("Time = %ld us\n", ((end.tv_sec * 1000000 + end.tv_usec) - (begin.tv_sec * 1000000 + begin.tv_usec )));
+}
+
 
 // main function
 int main(void) {
-    // variable
+    // image variable
     int n = WIDTH * HEIGHT;
-    int m = MASK_WIDTH * MASK_HEIGHT;
     int *start = (int *) malloc(n* sizeof(int));
-    int *mask = (int *) malloc(m * sizeof(int));
-//    int *mask = (int *) VERTMASK;
     int *result = (int *) malloc(n * sizeof(int));
 
+    // mask variable 
+    int m = MASK_WIDTH * MASK_HEIGHT;
+    int *mask = (int *) malloc(m * sizeof(int));
+//    int *mask = (int *) VERTMASK;    // static mask with vertical 1's       
+//    int *mask = (int *) DIAGMASK;    // static mask with diagonal 1's
+
+    // additional variable
     int i = 0;
     int *temp;
+
+    // time variable
+    struct timeval begin, end;
 
     // initialize rand seed
     srand(time(NULL));
 
-    // device property check
+    // check device property
     device_check();
 
-    // initialize the global images
+    // initialize the mask image and global image
+    print_divider();
     fill_image(mask, MASK_WIDTH, MASK_HEIGHT, RANGE);
     print_image(mask, MASK_WIDTH, MASK_HEIGHT);
     fill_image(start, WIDTH, HEIGHT, RANGE);
 //    fill_pattern(start, WIDTH, HEIGHT, RANGE);
     print_image(start, WIDTH, HEIGHT);
+
+    // run 2d convulotion with timer
+    gettimeofday(&begin, NULL);
 //    basic_2d_host(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
     basic_2d_dev(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
+    gettimeofday(&end, NULL);
     print_image(result, WIDTH, HEIGHT);    
-    
-/*
+    print_time(begin, end);
+    print_divider();
+/*    
+    // loop thru the same mask on the result 
     while (i < LIMIT) {
         basic_2d_host(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
         normalize_image(result, WIDTH, HEIGHT, RANGE);
