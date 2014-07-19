@@ -35,9 +35,11 @@ Submit your code and your performance results by email to:
 const int DIAGMASK[9] = {1, 0, 0, 0, 1, 0, 0, 0, 1};
 const int VERTMASK[9] = {1, 0, 0, 1, 0, 0, 1, 0, 0};
 
+__constant__ int MASK[MASK_WIDTH * MASK_HEIGHT];
 
 // The kernel that will execute on the GPU
-__global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
+//__global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
+__global__ void basic_2d_kernel(int *start, int *result, int width, int height, int mask_width, int mask_height) {
     // declare kernel variable
     int center_x = blockDim.x * blockIdx.x + threadIdx.x;
     int center_y = blockDim.y * blockIdx.y + threadIdx.y;
@@ -53,7 +55,8 @@ __global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, i
             for (int x = 0; x < mask_width; x++) {
                 current_x = (n_x_start_point + x + width) % width;
                 if ((current_x >= 0) && (current_x < width)) {
-                    pvalue += start[(current_y * width) + current_x] * mask[(y * mask_width) + x];
+//                    pvalue += start[(current_y * width) + current_x] * mask[(y * mask_width) + x];
+                    pvalue += start[(current_y * width) + current_x] * MASK[(y * mask_width) + x];
                 }
             }
         }
@@ -73,7 +76,8 @@ __global__ void basic_2d_kernel(int *start, int *mask, int *result, int width, i
 //
 void basic_2d_dev(int *start, int *mask, int *result, int width, int height, int mask_width, int mask_height) {
     // Step 1: Allocate memory
-    int *start_dev, *mask_dev,  *result_dev;
+//    int *mask_dev; 
+    int *start_dev,  *result_dev;
     int n = width * height;
     int m = mask_width * mask_height;
 
@@ -83,24 +87,27 @@ void basic_2d_dev(int *start, int *mask, int *result, int width, int height, int
     // value of our pointer to the correct device address.
     cudaMalloc((void **) &start_dev, sizeof(int) * n);
     cudaMalloc((void **) &result_dev, sizeof(int) * n);
-    cudaMalloc((void **) &mask_dev, sizeof(int) * m);
+//    cudaMalloc((void **) &mask_dev, sizeof(int) * m);
 
     // Step 2: Copy the input vectors to the device
     cudaMemcpy(start_dev, start, sizeof(int) * n, cudaMemcpyHostToDevice);
-    cudaMemcpy(mask_dev, mask, sizeof(int) * m, cudaMemcpyHostToDevice);
+    cudaMemcpyToSymbol(MASK, mask, sizeof(int) * m);
+//    cudaMemcpy(mask_dev, mask, sizeof(int) * m, cudaMemcpyHostToDevice);
+
 
     // Step 3: Invoke the kernel
     dim3 dimGrid(LIMIT, LIMIT, 1);
     dim3 dimBlock(ceil(width/ (float) LIMIT), ceil(height/ (float) LIMIT), 1);
-    basic_2d_kernel<<<dimGrid, dimBlock>>>(start_dev, mask_dev, result_dev, width, height, mask_width, mask_height);
+//    basic_2d_kernel<<<dimGrid, dimBlock>>>(start_dev, mask_dev, result_dev, width, height, mask_width, mask_height);
+    basic_2d_kernel<<<dimGrid, dimBlock>>>(start_dev, result_dev, width, height, mask_width, mask_height);
 
     // Step 4: Retrieve the results
     cudaMemcpy(result, result_dev, sizeof(int) * n, cudaMemcpyDeviceToHost);
 
     // Step 5: Free device memory
     cudaFree(start_dev);
-    cudaFree(mask_dev);
     cudaFree(result_dev);
+//    cudaFree(mask_dev);
 }
 
 
@@ -239,9 +246,9 @@ int main(void) {
 
     // mask variable 
     int m = MASK_WIDTH * MASK_HEIGHT;
-//    int *mask = (int *) malloc(m * sizeof(int));
+    int *mask = (int *) malloc(m * sizeof(int));
 //    int *mask = (int *) VERTMASK;    // static mask with vertical 1's       
-    int *mask = (int *) DIAGMASK;    // static mask with diagonal 1's
+//    int *mask = (int *) DIAGMASK;    // static mask with diagonal 1's
 
     // additional variable
     int i = 0;
@@ -258,7 +265,7 @@ int main(void) {
 
     // initialize the mask image and global image
     print_divider();
-//    fill_image(mask, MASK_WIDTH, MASK_HEIGHT, RANGE);
+    fill_image(mask, MASK_WIDTH, MASK_HEIGHT, RANGE);
     print_image(mask, MASK_WIDTH, MASK_HEIGHT);
     fill_image(start, WIDTH, HEIGHT, RANGE);
 //    fill_pattern(start, WIDTH, HEIGHT, RANGE);
@@ -274,7 +281,7 @@ int main(void) {
     print_divider();
 
 /*    
-    // loop thru the same mask on the result 
+    // loop thru the same mask for the result 
     while (i < LIMIT) {
         basic_2d_host(start, mask, result, WIDTH, HEIGHT, MASK_WIDTH, MASK_HEIGHT);
         normalize_image(result, WIDTH, HEIGHT, RANGE);
@@ -289,7 +296,7 @@ int main(void) {
     // free memory
     free(start);
     free(result);
-//    free(mask);
+    free(mask);
 
     return 0;
 }
