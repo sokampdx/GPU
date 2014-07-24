@@ -14,14 +14,14 @@ This version of matrix multiplication does not use share memory.
 #include <sys/time.h>
 #include <math.h>
 #include <string.h>
-
+#include <stdlib.h>
 
 #define SCALE 3.14159
-#define MAX = 9
-#define REPEAT = 2000
+#define MAX 9
+#define REPEAT 10 
 
 //global
-const int TESTSIZE[MAX] = {1, 5, 7, 11, 13, 16, 23, 32, 64};
+const int TESTSIZE[] = {1, 5, 7, 11, 13, 16, 23, 32, 64};
 
 
 // Row major matrix struct
@@ -43,9 +43,14 @@ typedef struct {
 // matrix multiplication kernel
 __global__ void matrixMultiplyKernel (const matrix, const matrix, matrix);
 
-// print error code
-void printError(const string, const cudaError);
 
+// print error code
+void printError(char * message, cudaError_t error) {
+	char errorString[255];
+	strcpy(errorString, cudaGetErrorString(error));
+	if (strcmp(errorString, "no error") == 1)
+		printf("%s: %s\n", message, cudaGetErrorString(error));
+}
 
 
 // Host code - matrix multiplication
@@ -84,7 +89,7 @@ void matrixMultiplyHost (const matrix A, const matrix B, matrix C, const blocksi
 
 	// invoke kernel
 	dim3 dimBlock(dimension.x, dimension.y);
-	dim3 dimGrid(ceil(B.width / dimBlock.x), ceil(A.height / dimBlock.y));
+	dim3 dimGrid((B.width + dimBlock.x - 1) / dimBlock.x, (A.height + dimBlock.y -1) / dimBlock.y);
 	matrixMultiplyKernel<<<dimGrid, dimBlock>>>(A_device, B_device, C_device);
 	err = cudaThreadSynchronize();
 	printError("Run kernel", err);
@@ -111,21 +116,16 @@ __global__ void matrixMultiplyKernel (const matrix A, const matrix B, matrix C) 
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 
 	// make sure we have a valid matrix C element
-	if ((row < height) && (col < width)) {
-		float value = 0;
-		int limit = A.width;
+	if ((row > A.height) || (col > B.width)) return;
 
-		for (int k = 0; k < limit; ++k) {
-			value += A.elements[row + limit + k] * B.elements[k * width + col];
-		}
-		C.elements[row * width + col] = value;
+	float value = 0.0;
+	int limit = A.width;
+
+	for (int k = 0; k < A.width; ++k) {
+		value += A.elements[row + A.width + k] * B.elements[k * B.width + col];
 	}
-}
+	C.elements[row * C.width + col] = value;
 
-
-// print error code
-void printError(const string message, const cudaError_t error) {
-	printF("%s: %s\n", message, cudaGetErrorString(error));
 }
 
 
@@ -137,20 +137,29 @@ void createRandomMatrix(matrix randomMatrix) {
 
 	for (int i = 0; i < height; ++i)
 		for (int j = 0; j < width; ++j)
-			randomMatrix.elements[i * width + j] = rand() / SCALE;
+			randomMatrix.elements[i * width + j] = 1.123;
+//			randomMatrix.elements[i * width + j] = ((float) rand()) / 1.123;
 } 
 
 
-// This function print out the different in time
-long int printTime(const timeval start, const timeval end) {
-    return ((end.tv_sec * 1000000L + end.tv_usec) - (start.tv_sec * 1000000L + start.tv_usec ));
+// print matrix
+void printMatrix(const matrix sourceMatrix) {
+	int height = sourceMatrix.height;
+	int width = sourceMatrix.width;
+
+	for (int i = 0; i < height; ++i) {
+		for (int j = 0; j < width; ++j) {
+			printf("%.2f ", sourceMatrix.elements[i * width + j]);
+		}
+		printf("\n");
+	}
+	printf("------------------------\n");
 }
 
 
 // print result
 void printResult(const timeval start, const timeval end, const blocksize testSize) {
-	printf("Result (x y micro-second), %s, %s, %ld:", testSize.x, testSize.y);
-	printTime(start, end);
+	printf("Result (x y micro-second), %d, %d, %ld\n", testSize.x, testSize.y, ((end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec )));
 }
 
 
@@ -160,27 +169,30 @@ int main (int argc, char* argv[]) {
 	matrix A, B, C;
 	blocksize currentSize;
 	int i = 0;
+	int x, y;
 	struct timeval start, end;
 
 	// initialize random seed
 	srand(time(NULL));
-	
+
 	// setup the matrices
 	A.height = atoi(argv[1]);
 	A.width = atoi(argv[2]);
 	A.elements = (float*) malloc(A.width * A.height *sizeof(float));
 
-	B.height = width_A;
+	B.height = A.width;
 	B.width = atoi(argv[3]);
 	B.elements = (float*) malloc(B.width * B.height *sizeof(float));
 
 	C.height = A.height;
 	C.width = B.width;
-	C.elements = (float*) malloc(C.widht * C.height *sizeof(float));
+	C.elements = (float*) malloc(C.width * C.height *sizeof(float));
 
 	// create random matrix for calculation
 	createRandomMatrix(A);
 	createRandomMatrix(B);
+	printMatrix(A);
+	printMatrix(B);
 
 	// main loop for testingg (randomly picking x & y)
 	while (i < REPEAT) {
@@ -189,29 +201,21 @@ int main (int argc, char* argv[]) {
 		currentSize.x = TESTSIZE[x];
 		currentSize.y = TESTSIZE[y];
 
+
 		// call host code
 		gettimeofday(&start, NULL);
 		matrixMultiplyHost(A, B, C, currentSize);
 		gettimeofday(&end, NULL);
-		printResult(C, currentSize);
+		printResult(start, end, currentSize);
+		printMatrix(C);
 
 		++i;
 	}
 
-/*
-	for (int x = 0; x < MAX; ++x) {
-		for (int y = 0; y < MAX; ++y) {
-			currentSize.x = TESTSIZE[x];
-			currentSize.y = TESTSIZE[y];
-
-		// call host code
-		gettimeofday(&start, NULL);
-		matrixMultiplyHost(A, B, C, currentSize);
-		gettimeofday(&end, NULL);
-		printResult(C, currentSize);
-		}
-	}
-*/
+	// free memory
+	free(A.elements);
+	free(B.elements);
+	free(C.elements);
 
 	return 0;
 }
