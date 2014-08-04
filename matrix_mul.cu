@@ -20,7 +20,7 @@ Matrix Addition base on CUDA TOOLKIT Documentation
 const int TESTSIZE[] = {1, 5, 7, 11, 13, 16, 23, 29, 32, 47, 64};
 const int MAX_TEST = 11;
 const float MAX_FLOAT = 3.14f;
-const int REPEAT = 10;
+const int REPEAT = 9900;
 
 // row major matrix struct
 typedef struct {
@@ -97,57 +97,66 @@ void printError(char *message, cudaError_t error) {
 }
 
 
-// Kernel code - matrix addition
-// A + B = C
-__global__ void matrixAddKernel(const matrix A, const matrix B, matrix C) {
+// Kernel code - matrix multiplication
+// A x B = C
+__global__ void matrixMulKernel(const matrix A, const matrix B, matrix C) {
 	int height = C.height;
+	int intrim = A.width;
 	int width = C.width;
 
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 
+	float value = 0;
+
 	// check if row & col are within matrix size
 	if ((row > height) || (col > width)) return;
 
-	int index = row * width + col;
+	for (int i = 0; i < intrim; ++i)
+		value += A.elements[row * intrim + i] * B.elements[i * width + col];	
 
-	C.elements[index] = A.elements[index] + B.elements[index]; 
+	C.elements[row * width + col] = value; 
 }
 
 
-// Host code - matrix addition
-// A + B = C
+// Host code - matrix multiplicattion
+// A x B = C
 // block size is determine at runtime
-void matrixAddHost(const matrix A, const matrix B, matrix C, const blocksize dimension) {
+void matrixMulHost(const matrix A, const matrix B, matrix C, const blocksize dimension) {
 	// variable declaration
 	matrix A_device, B_device, C_device;
 	cudaError_t err;
 	int height = C.height;
+	int intrim = A.width;
 	int width = C.width;
-	size_t size = height * width * sizeof(float);
+	size_t size;
 
-	A_device.width = B_device.width = C_device.width = width;
-	A_device.height = B_device.height = C_device.height = height;
+	A_device.width = B_device.height = intrim;
+	B_device.width = C_device.width = width;
+	A_device.height = C_device.height = height;
 
 	// load A and B to device memory
+	size = height * intrim * sizeof(float);
 	err = cudaMalloc(&A_device.elements, size);
 	printError("CUDA malloc A", err);
 	err = cudaMemcpy(A_device.elements, A.elements, size, cudaMemcpyHostToDevice);
 	printError("Copy A to device", err);
 
+	size = intrim * width * sizeof(float);
 	err = cudaMalloc(&B_device.elements, size);
 	printError("CUDA malloc B", err);
 	err = cudaMemcpy(B_device.elements, B.elements, size, cudaMemcpyHostToDevice);
 	printError("Copy B to device", err);
 
 	// allocate C in device memory
+	size = height * width * sizeof(float);
 	err = cudaMalloc(&C_device.elements, size);
 	printError("CUDA malloc C", err);
 	
 	// invoke kernel
 	dim3 dimBlock(dimension.x, dimension.y);
 	dim3 dimGrid((width + dimBlock.x - 1) / dimBlock.x, (height + dimBlock.y - 1) / dimBlock.y);
-	matrixAddKernel<<<dimGrid, dimBlock>>>(A_device, B_device, C_device);
+	matrixMulKernel<<<dimGrid, dimBlock>>>(A_device, B_device, C_device);
 	err = cudaThreadSynchronize();
 	printError("Run kernel", err);
 
@@ -175,14 +184,17 @@ void runSizeTest(const matrix A, const matrix B, matrix C) {
 	struct timeval start, end;
 
 	// set up test loop
+
 	while ( i < REPEAT) {
 		x = rand() % MAX_TEST;
 		y = rand() % MAX_TEST;
 		currentSize.x = TESTSIZE[x];
 		currentSize.y = TESTSIZE[y];
 
+//		currentSize.x = currentSize.y = 16;
+		
 		gettimeofday(&start, NULL);
-		matrixAddHost(A, B, C, currentSize);
+		matrixMulHost(A, B, C, currentSize);
 		gettimeofday(&end, NULL);
 		printResult(start, end, currentSize);
 //		printMatrix(C);
@@ -221,16 +233,16 @@ int main (int argc, char*argv[]) {
 	createRandomMatrix(B);
 
 	// print initial matrix
-	printMatrix(A);
-	printMatrix(B);
+//	printMatrix(A);
+//	printMatrix(B);
 
 	// tranditional addition
-	mulMatrix(A, B, C);
+//	mulMatrix(A, B, C);
 
 	// CUDA addition
-//	runSizeTest(A, B, C);
+	runSizeTest(A, B, C);
 
-	printMatrix(C);
+//	printMatrix(C);
 
 	// free matrix
 	free(A.elements);
