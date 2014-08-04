@@ -212,6 +212,8 @@ int main (int argc, char*argv[]) {
 	int dimM = atoi(argv[2]);
 	int dimY = atoi(argv[3]);
 
+	printf("dimensions, %d, %d, %d\n", dimX, dimM, dimY);
+
 	// initialize random seed
 	srand(time(NULL));
 

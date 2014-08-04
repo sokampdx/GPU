@@ -195,10 +195,10 @@ int main (int argc, char*argv[]) {
 	int dimX = atoi(argv[1]);
 	int dimY = atoi(argv[2]);
 
+	printf("dimension, %d, %d\n", dimX, dimY);
+
 	// initialize random seed
 	srand(time(NULL));
-
-
 
 	// setup initial matrix
 	A.height = dimX;
