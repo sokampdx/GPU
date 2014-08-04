@@ -20,7 +20,7 @@ Matrix Addition base on CUDA TOOLKIT Documentation
 const int TESTSIZE[] = {1, 5, 7, 11, 13, 16, 23, 29, 32, 47, 64};
 const int MAX_TEST = 11;
 const float MAX_FLOAT = 100.0f;
-const int REPEAT = 10;
+const int REPEAT = 9900;
 
 // row major matrix struct
 typedef struct {
@@ -157,16 +157,41 @@ void matrixAddHost(const matrix A, const matrix B, matrix C, const blocksize dim
 	cudaFree(C_device.elements);
 }
 
+// print result
+void printResult(const timeval start, const timeval end, const blocksize testSize) {
+printf("Result (x y micro-second), %d, %d, %ld\n", testSize.x, testSize.y, ((end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec )));
+}
 
 
+// run sizing test on kernel
+void runSizeTest(const matrix A, const matrix B, matrix C) {
+	blocksize currentSize;
+	int i = 0;
+	int x, y;
+	struct timeval start, end;
+
+	// set up test loop
+	while ( i < REPEAT) {
+		x = rand() % MAX_TEST;
+		y = rand() % MAX_TEST;
+		currentSize.x = TESTSIZE[x];
+		currentSize.y = TESTSIZE[y];
+
+		gettimeofday(&start, NULL);
+		matrixAddHost(A, B, C, currentSize);
+		gettimeofday(&end, NULL);
+		printResult(start, end, currentSize);
+//		printMatrix(C);
+
+		++i;
+	}
+}
 
 
 // main function
 // usage ./a.out dimensionX dimensionY
 int main (int argc, char*argv[]) {
 	matrix A, B, C;
-	blocksize currentSize;
-	int x, y;
 	int dimX = atoi(argv[1]);
 	int dimY = atoi(argv[2]);
 
@@ -192,30 +217,17 @@ int main (int argc, char*argv[]) {
 	createRandomMatrix(A);
 	createRandomMatrix(B);
 
+/*
 	// print initial matrix
 	printMatrix(A);
 	printMatrix(B);
 
-
-/*
 	// tranditional addition
 	addMatrix(A, B, C);
 */
 
 	// CUDA addition
-	x = rand() % MAX_TEST;
-	y = rand() % MAX_TEST;
-	currentSize.x = TESTSIZE[x];
-	currentSize.y = TESTSIZE[y];
-
-	printf("x=%d, y=%d\n", x, y);
-
-	matrixAddHost(A, B, C, currentSize);
-
-
-	// print result
-	printMatrix(C);
-
+	runSizeTest(A, B, C);
 
 	// free matrix
 	free(A.elements);
@@ -224,6 +236,7 @@ int main (int argc, char*argv[]) {
 
 	return 0;
 }
+
 
 
 
