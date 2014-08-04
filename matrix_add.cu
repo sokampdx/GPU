@@ -217,14 +217,12 @@ int main (int argc, char*argv[]) {
 	createRandomMatrix(A);
 	createRandomMatrix(B);
 
-/*
 	// print initial matrix
-	printMatrix(A);
-	printMatrix(B);
+//	printMatrix(A);
+//	printMatrix(B);
 
 	// tranditional addition
-	addMatrix(A, B, C);
-*/
+//	addMatrix(A, B, C);
 
 	// CUDA addition
 	runSizeTest(A, B, C);
