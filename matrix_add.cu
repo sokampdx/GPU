@@ -17,10 +17,13 @@ Matrix Addition base on CUDA TOOLKIT Documentation
 #include <math.h>
 
 //global
-const int TESTSIZE[] = {1, 5, 7, 11, 13, 16, 23, 29, 32, 47, 64};
+const int TESTSIZE[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024};
 const int MAX_TEST = 11;
 const float MAX_FLOAT = 100.0f;
-const int REPEAT = 9900;
+const int REPEAT = 10000;
+const int DIMX = 94586;
+const int DIMY = 75684;
+
 
 // row major matrix struct
 typedef struct {
@@ -159,7 +162,7 @@ void matrixAddHost(const matrix A, const matrix B, matrix C, const blocksize dim
 
 // print result
 void printResult(const timeval start, const timeval end, const blocksize testSize) {
-printf("Result (x y micro-second), %d, %d, %ld\n", testSize.x, testSize.y, ((end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec )));
+	printf("Result (x y micro-second), %d, %d, %ld\n", testSize.x, testSize.y, ((end.tv_sec * 1000000 + end.tv_usec) - (start.tv_sec * 1000000 + start.tv_usec )));
 }
 
 
@@ -192,8 +195,10 @@ void runSizeTest(const matrix A, const matrix B, matrix C) {
 // usage ./a.out dimensionX dimensionY
 int main (int argc, char*argv[]) {
 	matrix A, B, C;
-	int dimX = atoi(argv[1]);
-	int dimY = atoi(argv[2]);
+//	int dimX = atoi(argv[1]);
+//	int dimY = atoi(argv[2]);
+	int dimX = DIMX;
+	int dimY = DIMY;
 
 	printf("dimension, %d, %d\n", dimX, dimY);
 
