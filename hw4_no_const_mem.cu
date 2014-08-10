@@ -30,11 +30,13 @@ typedef struct {
 // global variable
 AtomInfo atominfo[NUMATOM];
 
-__constant__ AtomInfo CONST_ATOMINFO[NUMATOM];
+
+// __constant__ AtomInfo atominfo[NUMATOM];
+
 
 
 // kernal
-__global__ void cenergy_kernel(float *energygrid, dim3 grid, float gridspacing, float z, int numatoms) {
+__global__ void cenergy_kernel(float *energygrid, dim3 grid, float gridspacing, float z, AtomInfo *atominfo, int numatoms) {
 
 	int xindex = blockIdx.x * blockDim.x + threadIdx.x;
 	int yindex = blockIdx.y * blockDim.y + threadIdx.y;
@@ -48,10 +50,10 @@ __global__ void cenergy_kernel(float *energygrid, dim3 grid, float gridspacing, 
 	float energyval = 0.0f;
 
 	for (atomid = 0; atomid < numatoms; ++atomid) {
-		float dx = coorx - CONST_ATOMINFO[atomid].x;
-		float dy = coory - CONST_ATOMINFO[atomid].y;
+		float dx = coorx - atominfo[atomid].x;
+		float dy = coory - atominfo[atomid].y;
 //		float dz = z - atominfo[atomid].z;
-		energyval += CONST_ATOMINFO[atomid].w / sqrtf(dx*dx + dy*dy + CONST_ATOMINFO[atomid].z);
+		energyval += atominfo[atomid].w / sqrtf(dx*dx + dy*dy + atominfo[atomid].z);
 	}
 
 	energygrid[outaddr] = curenergy + energyval;
@@ -63,28 +65,26 @@ void cenergy_dev(float *energygrid, dim3 grid, float gridspacing, float z, AtomI
 
 	// Step 1: allocate memory
 	float * dev_energygrid;
-//	AtomInfo * dev_atominfo;
+	AtomInfo * dev_atominfo;
 	int gridSize = grid.x * grid.y * grid.z;
 
 	cudaMalloc((void **) &dev_energygrid, sizeof(float) * gridSize);
-//	cudaMalloc((void **) &dev_atominfo, sizeof(AtomInfo) * numatoms);
-	
+	cudaMalloc((void **) &dev_atominfo, sizeof(AtomInfo) * numatoms);
 
 	// Step 2: copy the input vector to the device
-//	cudaMemcpy(dev_atominfo, atominfo, sizeof(AtomInfo) * numatoms, cudaMemcpyHostToDevice);
-	cudaMemcpyToSymbol(CONST_ATOMINFO, atominfo, sizeof(AtomInfo) * numatoms);
-
+	cudaMemcpy(dev_atominfo, atominfo, sizeof(AtomInfo) * numatoms, cudaMemcpyHostToDevice);
+	
 	// Step 3: Invoke the kernel
 	dim3 dimGrid(TILESIZE, TILESIZE, 1);
 	dim3 dimBlock(ceil(grid.x / (float) TILESIZE), ceil(grid.y / (float) TILESIZE), 1);
-	cenergy_kernel<<<dimGrid, dimBlock>>>(dev_energygrid, grid, gridspacing, z, numatoms);
+	cenergy_kernel<<<dimGrid, dimBlock>>>(dev_energygrid, grid, gridspacing, z, dev_atominfo, numatoms);
 
 	// Step 4: Retrieve the results
 	cudaMemcpy(energygrid, dev_energygrid, sizeof(float) * gridSize, cudaMemcpyDeviceToHost);
 
 	// Step 5: Free device memory
 	cudaFree(dev_energygrid);
-//	cudaFree(dev_atominfo);
+	cudaFree(dev_atominfo);
 }
 
 
