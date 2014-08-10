@@ -15,12 +15,20 @@ Matrix Addition base on CUDA TOOLKIT Documentation
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <cuda_profiler_api.h>
 
 //global
-const int TESTSIZE[] = {1, 5, 7, 11, 13, 16, 23, 29, 32, 47, 64};
-const int MAX_TEST = 11;
+//const int TESTSIZE[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024};
+//const int MAX_TEST = 11;
+const int TEST_LIMIT = 64;
 const float MAX_FLOAT = 3.14f;
-const int REPEAT = 9900;
+const int REPEAT = 10000;
+const int THREAD_LIMIT = 1024;
+const int DIMX = 2039;
+const int DIMM = 1021;
+const int DIMY = 509;
+
+
 
 // row major matrix struct
 typedef struct {
@@ -134,6 +142,9 @@ void matrixMulHost(const matrix A, const matrix B, matrix C, const blocksize dim
 	A_device.width = B_device.height = intrim;
 	B_device.width = C_device.width = width;
 	A_device.height = C_device.height = height;
+	
+	// profiler start
+	cudaProfilerStart();
 
 	// load A and B to device memory
 	size = height * intrim * sizeof(float);
@@ -168,6 +179,9 @@ void matrixMulHost(const matrix A, const matrix B, matrix C, const blocksize dim
 	cudaFree(A_device.elements);
 	cudaFree(B_device.elements);
 	cudaFree(C_device.elements);
+
+	// profiler stop
+	cudaProfilerStop();
 }
 
 // print result
@@ -180,18 +194,22 @@ printf("Result (x y micro-second), %d, %d, %ld\n", testSize.x, testSize.y, ((end
 void runSizeTest(const matrix A, const matrix B, matrix C) {
 	blocksize currentSize;
 	int i = 0;
-	int x, y;
+//	int x, y;
 	struct timeval start, end;
 
 	// set up test loop
 
 	while ( i < REPEAT) {
+/*
 		x = rand() % MAX_TEST;
 		y = rand() % MAX_TEST;
 		currentSize.x = TESTSIZE[x];
 		currentSize.y = TESTSIZE[y];
-
-//		currentSize.x = currentSize.y = 16;
+*/
+		do {
+			currentSize.x = rand() % TEST_LIMIT + 1;
+			currentSize.y = rand() % TEST_LIMIT + 1;
+		} while ((currentSize.x * currentSize.y) > THREAD_LIMIT);
 		
 		gettimeofday(&start, NULL);
 		matrixMulHost(A, B, C, currentSize);
@@ -208,9 +226,12 @@ void runSizeTest(const matrix A, const matrix B, matrix C) {
 // usage ./a.out A.height A.width B.width
 int main (int argc, char*argv[]) {
 	matrix A, B, C;
-	int dimX = atoi(argv[1]);
-	int dimM = atoi(argv[2]);
-	int dimY = atoi(argv[3]);
+//	int dimX = atoi(argv[1]);
+//	int dimM = atoi(argv[2]);
+//	int dimY = atoi(argv[3]);
+	int dimX = DIMX;
+	int dimM = DIMM;
+	int dimY = DIMY;
 
 	printf("dimensions, %d, %d, %d\n", dimX, dimM, dimY);
 

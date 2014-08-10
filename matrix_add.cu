@@ -15,15 +15,17 @@ Matrix Addition base on CUDA TOOLKIT Documentation
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <cuda_profiler_api.h>
 
 //global
-const int TESTSIZE[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024};
-const int MAX_TEST = 11;
+//const int TESTSIZE[] = {1, 2, 4, 8, 16, 32, 64, 128, 256, 512};
+//const int MAX_TEST = 10;
+const int TEST_LIMIT = 64;
 const float MAX_FLOAT = 100.0f;
-const int REPEAT = 10000;
-const int DIMX = 94586;
-const int DIMY = 75684;
-
+const int REPEAT = 15000;
+const int DIMX = 4093;
+const int DIMY = 1021;
+const int THREADLIMIT = 1024;
 
 // row major matrix struct
 typedef struct {
@@ -128,6 +130,9 @@ void matrixAddHost(const matrix A, const matrix B, matrix C, const blocksize dim
 	A_device.width = B_device.width = C_device.width = width;
 	A_device.height = B_device.height = C_device.height = height;
 
+	// profiler data
+	cudaProfilerStart();
+
 	// load A and B to device memory
 	err = cudaMalloc(&A_device.elements, size);
 	printError("CUDA malloc A", err);
@@ -150,6 +155,7 @@ void matrixAddHost(const matrix A, const matrix B, matrix C, const blocksize dim
 	err = cudaThreadSynchronize();
 	printError("Run kernel", err);
 
+
 	// read C back from device memory
 	err = cudaMemcpy(C.elements, C_device.elements, size, cudaMemcpyDeviceToHost);
 	printError("Copy C off of device", err);
@@ -158,6 +164,9 @@ void matrixAddHost(const matrix A, const matrix B, matrix C, const blocksize dim
 	cudaFree(A_device.elements);
 	cudaFree(B_device.elements);
 	cudaFree(C_device.elements);
+
+	// add profiler
+	cudaProfilerStop();
 }
 
 // print result
@@ -170,15 +179,22 @@ void printResult(const timeval start, const timeval end, const blocksize testSiz
 void runSizeTest(const matrix A, const matrix B, matrix C) {
 	blocksize currentSize;
 	int i = 0;
-	int x, y;
+//	int x, y;
 	struct timeval start, end;
 
 	// set up test loop
 	while ( i < REPEAT) {
+/*
 		x = rand() % MAX_TEST;
 		y = rand() % MAX_TEST;
 		currentSize.x = TESTSIZE[x];
 		currentSize.y = TESTSIZE[y];
+*/
+
+		do {
+			currentSize.x = rand() % TEST_LIMIT + 1;
+			currentSize.y = rand() % TEST_LIMIT + 1;
+		} while ((currentSize.x * currentSize.y) > THREADLIMIT);
 
 		gettimeofday(&start, NULL);
 		matrixAddHost(A, B, C, currentSize);
@@ -231,6 +247,13 @@ int main (int argc, char*argv[]) {
 
 	// CUDA addition
 	runSizeTest(A, B, C);
+
+/*
+	// verify
+	printMatrix(A);
+	printMatrix(B);
+	printMatrix(C);
+*/
 
 	// free matrix
 	free(A.elements);
