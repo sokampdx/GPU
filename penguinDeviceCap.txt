@@ -1,0 +1,18 @@
+---------------------------------------
+Device 0 has compute capability 3.0
+Max Threads per Block: 1024 
+Max Threads for x direction per Block: 1024 
+Max Threads for y direction per Block: 1024 
+Max Threads for z direction per Block: 64 
+Max Blocks for x direction per Grid: 2147483647 
+Max Blocks for y direction per Grid: 65535 
+Max Blocks for z direction per Grid: 65535 
+Max Warp Size: 32 
+Number of SM: 3 
+Max Threads per SM: 2048 
+Number of Registers in each SM: 65536 
+Amount of Shared Memory Available: 49152 
+Amount of Constant Memory Available: 65536 
+Amount of Global Memory Available: 1073020928 
+Clock Rate: 823500 
+---------------------------------------

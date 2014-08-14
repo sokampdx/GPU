@@ -2,6 +2,8 @@
 KAM PUI SO
 CS510 GPU
 Homework 4
+
+Pre 12.1 problem. No const memory for kernel
 */
 
 #include <sys/time.h>

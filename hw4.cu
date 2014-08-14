@@ -2,6 +2,8 @@
 KAM PUI SO
 CS510 GPU
 Homework 4
+
+Problem 12.3 with const memory, memory coalescing
 */
 
 #include <sys/time.h>
@@ -44,17 +46,44 @@ __global__ void cenergy_kernel(float *energygrid, dim3 grid, float gridspacing, 
 	float curenergy = energygrid[outaddr];
 	float coorx = gridspacing * (float) xindex;
 	float coory = gridspacing * (float) yindex;
+	float gridspacing_coalesce = gridspacing * TILESIZE;
 	int atomid;
-	float energyval = 0.0f;
+	float energyvalx1, energyvalx2, energyvalx3, energyvalx4, energyvalx5, energyvalx6, energyvalx7, energyvalx8;
+	energyvalx1 = energyvalx2 = energyvalx3 = energyvalx4 = 0.0f;
+	energyvalx5 = energyvalx6 = energyvalx7 = energyvalx8 = 0.0f;
 
 	for (atomid = 0; atomid < numatoms; ++atomid) {
-		float dx = coorx - CONST_ATOMINFO[atomid].x;
 		float dy = coory - CONST_ATOMINFO[atomid].y;
-//		float dz = z - atominfo[atomid].z;
-		energyval += CONST_ATOMINFO[atomid].w / sqrtf(dx*dx + dy*dy + CONST_ATOMINFO[atomid].z);
+		float dyz2 = (dy*dy) + CONST_ATOMINFO[atomid].z;
+
+		float dx1 = coorx - CONST_ATOMINFO[atomid].x;
+		float dx2 = dx1 + gridspacing_coalesce;
+		float dx3 = dx2 + gridspacing_coalesce;
+		float dx4 = dx3 + gridspacing_coalesce;
+		float dx5 = dx4 + gridspacing_coalesce;
+		float dx6 = dx5 + gridspacing_coalesce;
+		float dx7 = dx6 + gridspacing_coalesce;
+		float dx8 = dx7 + gridspacing_coalesce;
+
+		energyvalx1 += CONST_ATOMINFO[atomid].w / sqrtf(dx1*dx1 + dyz2);
+		energyvalx2 += CONST_ATOMINFO[atomid].w / sqrtf(dx2*dx2 + dyz2);
+		energyvalx3 += CONST_ATOMINFO[atomid].w / sqrtf(dx3*dx3 + dyz2);
+		energyvalx4 += CONST_ATOMINFO[atomid].w / sqrtf(dx4*dx4 + dyz2);
+		energyvalx5 += CONST_ATOMINFO[atomid].w / sqrtf(dx5*dx5 + dyz2);
+		energyvalx6 += CONST_ATOMINFO[atomid].w / sqrtf(dx6*dx6 + dyz2);
+		energyvalx7 += CONST_ATOMINFO[atomid].w / sqrtf(dx7*dx7 + dyz2);
+		energyvalx8 += CONST_ATOMINFO[atomid].w / sqrtf(dx8*dx8 + dyz2);
+
 	}
 
-	energygrid[outaddr] = curenergy + energyval;
+	energygrid[outaddr] += energyvalx1;
+	energygrid[outaddr + TILESIZE] += energyvalx1;
+	energygrid[outaddr + 2 * TILESIZE] += energyvalx2;
+	energygrid[outaddr + 3 * TILESIZE] += energyvalx3;
+	energygrid[outaddr + 4 * TILESIZE] += energyvalx4;
+	energygrid[outaddr + 5 * TILESIZE] += energyvalx5;
+	energygrid[outaddr + 6 * TILESIZE] += energyvalx6;
+	energygrid[outaddr + 7 * TILESIZE] += energyvalx7;
 }
 
 
